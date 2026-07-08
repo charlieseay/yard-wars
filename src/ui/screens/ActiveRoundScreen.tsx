@@ -4,14 +4,18 @@
  * OLED-optimized for outdoor play
  */
 
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView, Alert } from 'react-native';
 import { theme } from '../theme';
 import { RoundState, HoleState } from '../../types/game';
+import { ChipTray } from '../components/ChipTray';
+import { getDefaultDecks } from '../../state/defaultDecks';
 
 interface ActiveRoundScreenProps {
   roundState: RoundState;
   onUpdateScore: (playerId: string, score: number) => void;
+  onAssignChip: (chipId: string, playerId: string) => void;
+  onRemoveChip: (chipId: string) => void;
   onAdvanceHole: () => void;
   onGoBackHole: () => void;
   onEndRound: () => void;
@@ -20,13 +24,22 @@ interface ActiveRoundScreenProps {
 export function ActiveRoundScreen({
   roundState,
   onUpdateScore,
+  onAssignChip,
+  onRemoveChip,
   onAdvanceHole,
   onGoBackHole,
   onEndRound,
 }: ActiveRoundScreenProps) {
+  const [selectedChipId, setSelectedChipId] = useState<string | null>(null);
+
   const currentHole = roundState.holes[roundState.currentHoleIndex];
   const playerIds = Object.keys(roundState.players);
   const isLastHole = roundState.currentHoleIndex === roundState.holes.length - 1;
+
+  // Load game deck to get available chips
+  const decks = getDefaultDecks();
+  const gameDeck = decks.find(d => d.id === roundState.config.gameDeckId);
+  const availableChips = gameDeck?.chips || [];
 
   if (!currentHole) {
     return (
@@ -38,8 +51,38 @@ export function ActiveRoundScreen({
 
   const skinsInPot = roundState.config.skinsValue * (1 + (currentHole.pushedSkins || 0));
 
+  const handleChipPress = (chipId: string) => {
+    if (selectedChipId === chipId) {
+      setSelectedChipId(null);
+    } else {
+      setSelectedChipId(chipId);
+      Alert.alert(
+        'Assign Chip',
+        'Tap a player to assign this chip',
+        [{ text: 'Cancel', onPress: () => setSelectedChipId(null) }]
+      );
+    }
+  };
+
+  const handlePlayerPress = (playerId: string) => {
+    if (selectedChipId) {
+      onAssignChip(selectedChipId, playerId);
+      setSelectedChipId(null);
+    }
+  };
+
+  const getPlayerChips = (playerId: string) => {
+    return Object.entries(currentHole.chipLocations || {})
+      .filter(([_, pid]) => pid === playerId)
+      .map(([chipId]) => availableChips.find(c => c.id === chipId))
+      .filter(Boolean);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
+      {/* Chip tray */}
+      <ChipTray chips={availableChips} onChipPress={handleChipPress} />
+
       {/* Header - Hole info and skins pot */}
       <View style={styles.header}>
         <View style={styles.holeInfo}>
@@ -59,16 +102,30 @@ export function ActiveRoundScreen({
           const score = currentHole.playerScores[playerId] || currentHole.par;
           const diff = score - currentHole.par;
 
+          const playerChips = getPlayerChips(playerId);
+
           return (
-            <View
+            <TouchableOpacity
               key={playerId}
               style={[
                 styles.playerRow,
                 { borderLeftColor: player.color || theme.colors.neonGreen },
+                selectedChipId && styles.playerRowSelectable,
               ]}
+              onPress={() => handlePlayerPress(playerId)}
+              activeOpacity={selectedChipId ? 0.7 : 1}
             >
               <View style={styles.playerInfo}>
                 <Text style={styles.playerName}>{player.name}</Text>
+                {playerChips.length > 0 && (
+                  <View style={styles.playerChipsContainer}>
+                    {playerChips.map((chip: any) => (
+                      <Text key={chip.id} style={styles.playerChipIcon}>
+                        {chip.icon || '•'}
+                      </Text>
+                    ))}
+                  </View>
+                )}
                 <Text
                   style={[
                     styles.playerDiff,
@@ -99,7 +156,7 @@ export function ActiveRoundScreen({
                   <Text style={styles.scoreButtonText}>+</Text>
                 </TouchableOpacity>
               </View>
-            </View>
+            </TouchableOpacity>
           );
         })}
       </ScrollView>
@@ -173,6 +230,9 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     minHeight: theme.spacing.minTouchTarget + theme.spacing.lg,
   },
+  playerRowSelectable: {
+    backgroundColor: '#001111',
+  },
   playerInfo: {
     flex: 1,
   },
@@ -192,6 +252,14 @@ const styles = StyleSheet.create({
   },
   diffOver: {
     color: theme.colors.neonRed,
+  },
+  playerChipsContainer: {
+    flexDirection: 'row',
+    gap: theme.spacing.xs,
+    marginTop: theme.spacing.xs,
+  },
+  playerChipIcon: {
+    fontSize: 16,
   },
   scoreControls: {
     flexDirection: 'row',

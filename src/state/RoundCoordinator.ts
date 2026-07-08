@@ -392,10 +392,33 @@ export class RoundCoordinator {
           ledger[loserId].skinsLost += lossPerPlayer;
         });
       }
-    });
 
-    // TODO: Calculate chip earnings/penalties
-    // (Requires loading game deck to get chip weights)
+      // Calculate chip earnings/penalties
+      // For now, simplified: each chip is worth $1 per other player
+      // TODO: Load actual game deck to get chip weights
+      Object.entries(hole.chipLocations || {}).forEach(([chipId, playerId]) => {
+        const isNegativeChip = chipId.includes('penalty') || chipId.includes('ob') || chipId.includes('tree');
+        const chipValue = 1; // Default weight
+
+        if (isNegativeChip) {
+          // Negative chip: holder pays all other players
+          ledger[playerId].chipsPaid += chipValue * (playerIds.length - 1);
+          playerIds.forEach(otherId => {
+            if (otherId !== playerId) {
+              ledger[otherId].chipsEarned += chipValue;
+            }
+          });
+        } else {
+          // Positive chip: holder receives from all other players
+          ledger[playerId].chipsEarned += chipValue * (playerIds.length - 1);
+          playerIds.forEach(otherId => {
+            if (otherId !== playerId) {
+              ledger[otherId].chipsPaid += chipValue;
+            }
+          });
+        }
+      });
+    });
 
     // Calculate total balance
     Object.values(ledger).forEach(entry => {

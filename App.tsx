@@ -80,6 +80,19 @@ export default function App() {
               score,
             });
           }}
+          onAssignChip={async (chipId: string, playerId: string) => {
+            await coordinator.handleEvent({
+              type: 'ASSIGN_CHIP',
+              chipId,
+              playerId,
+            });
+          }}
+          onRemoveChip={async (chipId: string) => {
+            await coordinator.handleEvent({
+              type: 'REMOVE_CHIP',
+              chipId,
+            });
+          }}
           onAdvanceHole={async () => {
             await coordinator.handleEvent({ type: 'ADVANCE_HOLE' });
           }}

@@ -8,6 +8,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 
 import { theme } from '../theme';
 import { RoundState, Player } from '../../types/game';
 import { getDefaultDecks } from '../../state/defaultDecks';
+import { generateUUID } from '../../utils/uuid';
 
 interface SetupScreenProps {
   onStartRound: (roundState: RoundState) => void;
@@ -32,7 +33,7 @@ export function SetupScreen({ onStartRound }: SetupScreenProps) {
     // Create player objects with UUIDs
     const players: Record<string, Player> = {};
     activePlayers.forEach((name, index) => {
-      const playerId = `player-${Date.now()}-${index}`;
+      const playerId = generateUUID();
       players[playerId] = {
         id: playerId,
         name: name.trim(),
@@ -41,7 +42,7 @@ export function SetupScreen({ onStartRound }: SetupScreenProps) {
     });
 
     const roundState: RoundState = {
-      roundId: `round-${Date.now()}`,
+      roundId: generateUUID(),
       courseId: 'default-course',
       courseName: 'Default Course',
       players,
