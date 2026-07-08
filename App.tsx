@@ -8,6 +8,8 @@ import { View, Text, StyleSheet, StatusBar } from 'react-native';
 import { RoundRepository } from './src/storage/RoundRepository';
 import { RoundCoordinator, AppScreenState } from './src/state/RoundCoordinator';
 import { SetupScreen } from './src/ui/screens/SetupScreen';
+import { ActiveRoundScreen } from './src/ui/screens/ActiveRoundScreen';
+import { SettlementScreen } from './src/ui/screens/SettlementScreen';
 import { theme } from './src/ui/theme';
 import { RoundState } from './src/types/game';
 
@@ -69,20 +71,35 @@ export default function App() {
       )}
 
       {screenState.screen === 'activeRound' && (
-        <View style={styles.screenContainer}>
-          <Text style={styles.titleText}>Active Round</Text>
-          <Text style={styles.bodyText}>
-            Round ID: {screenState.roundState.roundId.slice(0, 8)}{'\n'}
-            Hole: {screenState.roundState.currentHoleIndex + 1} of 18
-          </Text>
-        </View>
+        <ActiveRoundScreen
+          roundState={screenState.roundState}
+          onUpdateScore={async (playerId: string, score: number) => {
+            await coordinator.handleEvent({
+              type: 'UPDATE_SCORE',
+              playerId,
+              score,
+            });
+          }}
+          onAdvanceHole={async () => {
+            await coordinator.handleEvent({ type: 'ADVANCE_HOLE' });
+          }}
+          onGoBackHole={async () => {
+            await coordinator.handleEvent({ type: 'GO_BACK_HOLE' });
+          }}
+          onEndRound={async () => {
+            await coordinator.handleEvent({ type: 'END_ROUND' });
+          }}
+        />
       )}
 
       {screenState.screen === 'settlement' && (
-        <View style={styles.screenContainer}>
-          <Text style={styles.titleText}>Settlement</Text>
-          <Text style={styles.bodyText}>Round complete!</Text>
-        </View>
+        <SettlementScreen
+          roundState={screenState.roundState}
+          ledger={screenState.ledger}
+          onExitToSetup={async () => {
+            await coordinator.handleEvent({ type: 'EXIT_TO_SETUP' });
+          }}
+        />
       )}
     </View>
   );
