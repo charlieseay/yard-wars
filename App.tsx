@@ -7,7 +7,9 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, StatusBar } from 'react-native';
 import { RoundRepository } from './src/storage/RoundRepository';
 import { RoundCoordinator, AppScreenState } from './src/state/RoundCoordinator';
+import { SetupScreen } from './src/ui/screens/SetupScreen';
 import { theme } from './src/ui/theme';
+import { RoundState } from './src/types/game';
 
 const coordinator = new RoundCoordinator();
 
@@ -56,21 +58,14 @@ export default function App() {
       <StatusBar barStyle="light-content" backgroundColor={theme.colors.background} />
 
       {screenState.screen === 'setup' && (
-        <View style={styles.screenContainer}>
-          <Text style={styles.titleText}>Birdies & Bourbon</Text>
-          <Text style={styles.subtitleText}>Disc Golf Companion</Text>
-          <Text style={styles.bodyText}>
-            {'\n'}
-            ✅ Project scaffolded{'\n'}
-            ✅ TypeScript configured{'\n'}
-            ✅ OLED theme created{'\n'}
-            ✅ Atomic storage implemented{'\n'}
-            ✅ State coordinator built{'\n'}
-            ✅ Game decks defined{'\n'}
-            {'\n'}
-            Next: Build UI screens
-          </Text>
-        </View>
+        <SetupScreen
+          onStartRound={async (roundState: RoundState) => {
+            await coordinator.handleEvent({
+              type: 'START_ROUND',
+              roundState,
+            });
+          }}
+        />
       )}
 
       {screenState.screen === 'activeRound' && (
