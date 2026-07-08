@@ -64,11 +64,12 @@ export class RoundRepository {
     const json = JSON.stringify(envelope, null, 2);
 
     try {
-      // Step 1: Write to backup file
-      await backupFile.create({ contents: json });
+      // Step 1: Create backup file and write content
+      await backupFile.create({ overwrite: true });
+      backupFile.write(json);
 
       // Step 2: Move backup to main file (atomic operation)
-      await backupFile.move(file);
+      await backupFile.move(file, { overwrite: true });
     } catch (error) {
       console.error('Failed to save round:', error);
       throw error;
@@ -83,12 +84,12 @@ export class RoundRepository {
     const file = new File(this.roundsDir, `${roundId}.json`);
 
     try {
-      const exists = await file.exists();
+      const exists = file.exists;
       if (!exists) {
         return null;
       }
 
-      const json = await file.readAsString();
+      const json = await file.text();
       const envelope: StorageEnvelope<RoundState> = JSON.parse(json);
 
       // Schema migration interceptor
@@ -176,14 +177,12 @@ export class RoundRepository {
     const backupFile = new File(this.roundsDir, `${roundId}.json.bak`);
 
     try {
-      const fileExists = await file.exists();
-      if (fileExists) {
-        await file.delete();
+      if (file.exists) {
+        file.delete();
       }
 
-      const backupExists = await backupFile.exists();
-      if (backupExists) {
-        await backupFile.delete();
+      if (backupFile.exists) {
+        backupFile.delete();
       }
     } catch (error) {
       console.error('Failed to delete round:', error);
@@ -207,8 +206,9 @@ export class RoundRepository {
     const json = JSON.stringify(envelope, null, 2);
 
     try {
-      await backupFile.create({ contents: json });
-      await backupFile.move(file);
+      await backupFile.create({ overwrite: true });
+      backupFile.write(json);
+      await backupFile.move(file, { overwrite: true });
     } catch (error) {
       console.error('Failed to save expedition:', error);
       throw error;
@@ -222,12 +222,12 @@ export class RoundRepository {
     const file = new File(this.expeditionsDir, `${expeditionId}.json`);
 
     try {
-      const exists = await file.exists();
+      const exists = file.exists;
       if (!exists) {
         return null;
       }
 
-      const json = await file.readAsString();
+      const json = await file.text();
       const envelope: StorageEnvelope<Expedition> = JSON.parse(json);
 
       return envelope.data;
@@ -253,8 +253,9 @@ export class RoundRepository {
     const json = JSON.stringify(envelope, null, 2);
 
     try {
-      await backupFile.create({ contents: json });
-      await backupFile.move(file);
+      await backupFile.create({ overwrite: true });
+      backupFile.write(json);
+      await backupFile.move(file, { overwrite: true });
     } catch (error) {
       console.error('Failed to save deck:', error);
       throw error;
@@ -275,7 +276,7 @@ export class RoundRepository {
 
       const decks = await Promise.all(
         deckFiles.map(async (file) => {
-          const json = await file.readAsString();
+          const json = await file.text();
           const envelope: StorageEnvelope<GameDeck> = JSON.parse(json);
           return envelope.data;
         })
