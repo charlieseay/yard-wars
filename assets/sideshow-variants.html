@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SideShow Variants - Visual Comparison</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #000;
+      color: #ffffff;
+      padding: 40px;
+    }
+    .hero {
+      text-align: center;
+      padding: 80px 40px;
+      background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+      border-bottom: 4px solid #00FF00;
+      margin-bottom: 60px;
+    }
+    .hero h1 {
+      font-size: 72px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #00FF00, #00FFFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero .subtitle {
+      font-size: 24px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+    .hero .original {
+      display: inline-block;
+      padding: 20px 40px;
+      background: #1a1a1a;
+      border: 2px solid #00FFFF;
+      border-radius: 15px;
+      font-size: 20px;
+      color: #00FFFF;
+    }
+    .filter-bar {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 30px;
+      background: #0a0a0a;
+      border-radius: 15px;
+    }
+    .filter-bar button {
+      margin: 0 10px;
+      padding: 12px 30px;
+      background: #1a1a1a;
+      border: 2px solid #333;
+      color: #fff;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+    .filter-bar button:hover {
+      border-color: #00FF00;
+      background: #002200;
+    }
+    .filter-bar button.active {
+      background: #00FF00;
+      color: #000;
+      border-color: #00FF00;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 30px;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+    .variant-card {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      border: 3px solid #222;
+      border-radius: 20px;
+      padding: 40px;
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+    .variant-card:hover {
+      border-color: #00FFFF;
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
+    }
+    .variant-card.top-pick {
+      border-color: #00FF00;
+      background: linear-gradient(135deg, #001a00 0%, #002200 100%);
+    }
+    .variant-card.top-pick::before {
+      content: "⭐ TOP PICK";
+      position: absolute;
+      top: -15px;
+      right: 20px;
+      background: #00FF00;
+      color: #000;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .logo-container {
+      background: #000;
+      border-radius: 25px;
+      padding: 50px;
+      margin-bottom: 30px;
+      text-align: center;
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #111;
+    }
+    .variant-name {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #00FFFF;
+      text-align: center;
+    }
+    .top-pick .variant-name {
+      background: linear-gradient(135deg, #00FF00, #00FFFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 52px;
+    }
+    .tagline {
+      font-size: 17px;
+      color: #999;
+      margin-bottom: 25px;
+      text-align: center;
+      font-style: italic;
+    }
+    .why {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #ccc;
+      padding: 20px;
+      background: #000;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border-left: 4px solid #00FFFF;
+    }
+    .rating {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #222;
+    }
+    .rating-item {
+      text-align: center;
+    }
+    .rating-label {
+      font-size: 11px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .rating-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00FF00;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+    .tag {
+      padding: 6px 14px;
+      background: #000;
+      border: 1px solid #333;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #999;
+    }
+    .tag.highlight {
+      border-color: #00FF00;
+      color: #00FF00;
+    }
+    .vote-section {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .vote-btn {
+      flex: 1;
+      padding: 15px;
+      background: #00FF00;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .vote-btn:hover {
+      background: #00FFFF;
+      transform: scale(1.05);
+    }
+    .vote-btn.secondary {
+      background: #1a1a1a;
+      color: #00FFFF;
+      border: 2px solid #00FFFF;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>SideShow Variants</h1>
+    <div class="subtitle">15 Evolution Paths from the Original Concept</div>
+    <div class="original">
+      Original: <strong>SideShow</strong> — "The side games that steal the spotlight"
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <button class="active" onclick="filter('all')">All Variants</button>
+    <button onclick="filter('safe')">Safe Choices</button>
+    <button onclick="filter('bold')">Bold Names</button>
+    <button onclick="filter('compound')">Compound Words</button>
+  </div>
+
+  <div class="grid">
+    <!-- SideStage - TOP PICK -->
+    <div class="variant-card top-pick" data-category="safe compound">
+      <div class="logo-container">
+        <svg width="260" height="260" viewBox="0 0 260 260">
+          <!-- Stage with spotlight -->
+          <rect x="50" y="180" width="160" height="20" fill="#333"/>
+          <!-- Spotlight beam -->
+          <path d="M 130 40 L 80 180 L 180 180 Z" fill="#FF8C00" opacity="0.3"/>
+          <!-- Cards in spotlight -->
+          <rect x="110" y="120" width="30" height="45" rx="3" fill="#00FF00" transform="rotate(-10 125 142)"/>
+          <rect x="120" y="125" width="30" height="45" rx="3" fill="#00FFFF" transform="rotate(10 135 147)"/>
+          <!-- Spotlight fixture -->
+          <circle cx="130" cy="40" r="15" fill="#FF8C00"/>
+          <rect x="120" y="25" width="20" height="15" fill="#666"/>
+        </svg>
+      </div>
+      <div class="variant-name">SideStage</div>
+      <div class="tagline">"Step up to the mic, the side action has begun."</div>
+      <div class="tags">
+        <span class="tag highlight">Concert Vibe</span>
+        <span class="tag">2 Words</span>
+        <span class="tag highlight">Clean Domain</span>
+      </div>
+      <div class="why">
+        Shifts from circus to rock concert/festival side stage. Appeals to groups who view hangouts as a performance. Less cheeky than "Show", more modern energy.
+      </div>
+      <div class="rating">
+        <div class="rating-item">
+          <div class="rating-label">Memorable</div>
+          <div class="rating-value">9/10</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-label">Modern</div>
+          <div class="rating-value">9/10</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-label">Domain</div>
+          <div class="rating-value">8/10</div>
+        </div>
+      </div>
+      <div class="vote-section">
+        <button class="vote-btn" onclick="vote('SideStage', 'love')">I Love This</button>
+        <button class="vote-btn secondary" onclick="vote('SideStage', 'maybe')">Maybe</button>
+      </div>
+    </div>
+
+    <!-- ByPlay -->
+    <div class="variant-card" data-category="safe">
+      <div class="logo-container">
+        <svg width="260" height="260" viewBox="0 0 260 260">
+          <!-- Two play buttons forming spade -->
+          <path d="M 100 130 L 130 80 L 160 130 L 145 130 L 145 160 L 115 160 L 115 130 Z"
+                fill="#00FFFF" stroke="#00FFFF" stroke-width="3"/>
+          <!-- Second play button offset -->
+          <path d="M 110 140 L 140 90 L 170 140"
+                fill="none" stroke="#00FF00" stroke-width="3" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="variant-name">ByPlay</div>
+      <div class="tagline">"The companion app for your casual rivalries."</div>
+      <div class="tags">
+        <span class="tag highlight">1 Word</span>
+        <span class="tag">Theater Term</span>
+        <span class="tag highlight">Tech-Forward</span>
+      </div>
+      <div class="why">
+        Uses theater term "byplay" (secondary action). Short, modern, tech-forward. Clean and professional while keeping entertainment roots.
+      </div>
+      <div class="rating">
+        <div class="rating-item">
+          <div class="rating-label">Memorable</div>
+          <div class="rating-value">7/10</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-label">Modern</div>
+          <div class="rating-value">10/10</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-label">Domain</div>
+          <div class="rating-value">9/10</div>
+        </div>
+      </div>
+      <div class="vote-section">
+        <button class="vote-btn" onclick="vote('ByPlay', 'love')">I Love This</button>
+        <button class="vote-btn secondary" onclick="vote('ByPlay', 'maybe')">Maybe</button>
+      </div>
+    </div>
+
+    <!-- OutSideShow -->
+    <div class="variant-card" data-category="bold compound">
+      <div class="logo-container">
+        <svg width="260" height="260" viewBox="0 0 260 260">
+          <!-- OUTSIDE with target O -->
+          <circle cx="80" cy="130" r="30" fill="none" stroke="#00FF00" stroke-width="4"/>
+          <circle cx="80" cy="130" r="20" fill="none" stroke="#00FF00" stroke-width="3"/>
+          <circle cx="80" cy="130" r="8" fill="#00FF00"/>
+          <!-- SHOW with marquee lights -->
+          <text x="130" y="145" font-family="Arial Black" font-size="45" fill="#FF8C00" font-weight="bold">SHOW</text>
+          <circle cx="135" cy="120" r="4" fill="#FFD700"/>
+          <circle cx="160" cy="120" r="4" fill="#FFD700"/>
+          <circle cx="185" cy="120" r="4" fill="#FFD700"/>
+          <circle cx="210" cy="120" r="4" fill="#FFD700"/>
+        </svg>
+      </div>
+      <div class="variant-name">OutSideShow</div>
+      <div class="tagline">"Bringing the spectacle to the great outdoors."</div>
+      <div class="tags">
+        <span class="tag">3 Words</span>
+        <span class="tag highlight">Outdoor Explicit</span>
+        <span class="tag">Playful</span>
+      </div>
+      <div class="why">
+        Cleverly incorporates "Outside" to explicitly highlight outdoor games. Long but memorable. Target in the O is perfect visual hook.
+      </div>
+      <div class="rating">
+        <div class="rating-item">
+          <div class="rating-label">Memorable</div>
+          <div class="rating-value">8/10</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-label">Modern</div>
+          <div class="rating-value">6/10</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-label">Domain</div>
+          <div class="rating-value">7/10</div>
+        </div>
+      </div>
+      <div class="vote-section">
+        <button class="vote-btn" onclick="vote('OutSideShow', 'love')">I Love This</button>
+        <button class="vote-btn secondary" onclick="vote('OutSideShow', 'maybe')">Maybe</button>
+      </div>
+    </div>
+
+    <!-- SideSpree -->
+    <div class="variant-card" data-category="safe compound">
+      <div class="logo-container">
+        <svg width="260" height="260" viewBox="0 0 260 260">
+          <!-- Ticket stub tearing with confetti burst -->
+          <rect x="80" y="100" width="100" height="80" rx="8" fill="none" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="130" y1="100" x2="130" y2="180" stroke="#00FFFF" stroke-width="2" stroke-dasharray="5,5"/>
+          <!-- Confetti -->
+          <circle cx="140" cy="70" r="4" fill="#00FF00"/>
+          <circle cx="155" cy="60" r="3" fill="#FF8C00"/>
+          <circle cx="170" cy="75" r="4" fill="#00FFFF"/>
+          <rect x="145" y="80" width="6" height="6" fill="#FF0044" transform="rotate(45 148 83)"/>
+          <rect x="165" y="65" width="5" height="5" fill="#00FF00" transform="rotate(30 167 67)"/>
+        </svg>
+      </div>
+      <div class="variant-name">SideSpree</div>
+      <div class="tagline">"A non-stop festival of mini-games and wagers."</div>
+      <div class="tags">
+        <span class="tag highlight">Active Feel</span>
+        <span class="tag">2 Words</span>
+        <span class="tag highlight">Celebration Vibe</span>
+      </div>
+      <div class="why">
+        "Spree" sounds active, indulgent, exciting. Frames side-gaming as a continuous celebration. Lighter and more fun than "Show".
+      </div>
+      <div class="rating">
+        <div class="rating-item">
+          <div class="rating-label">Memorable</div>
+          <div class="rating-value">8/10</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-label">Modern</div>
+          <div class="rating-value">7/10</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-label">Domain</div>
+          <div class="rating-value">8/10</div>
+        </div>
+      </div>
+      <div class="vote-section">
+        <button class="vote-btn" onclick="vote('SideSpree', 'love')">I Love This</button>
+        <button class="vote-btn secondary" onclick="vote('SideSpree', 'maybe')">Maybe</button>
+      </div>
+    </div>
+
+    <!-- SideGlow -->
+    <div class="variant-card" data-category="safe compound">
+      <div class="logo-container">
+        <svg width="260" height="260" viewBox="0 0 260 260">
+          <!-- Glowing disc basket in the dark -->
+          <defs>
+            <radialGradient id="glow">
+              <stop offset="0%" stop-color="#00FF00" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#00FF00" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="130" cy="130" r="60" fill="url(#glow)" opacity="0.4"/>
+          <circle cx="130" cy="130" r="40" fill="none" stroke="#00FF00" stroke-width="4"/>
+          <circle cx="130" cy="130" r="30" fill="none" stroke="#00FF00" stroke-width="3"/>
+          <line x1="130" y1="90" x2="130" y2="110" stroke="#00FF00" stroke-width="3"/>
+          <line x1="130" y1="150" x2="130" y2="170" stroke="#00FF00" stroke-width="3"/>
+          <line x1="90" y1="130" x2="110" y2="130" stroke="#00FF00" stroke-width="3"/>
+          <line x1="150" y1="130" x2="170" y2="130" stroke="#00FF00" stroke-width="3"/>
+        </svg>
+      </div>
+      <div class="variant-name">SideGlow</div>
+      <div class="tagline">"Light up the sidelines when the sun goes down."</div>
+      <div class="tags">
+        <span class="tag">2 Words</span>
+        <span class="tag highlight">Night Games</span>
+        <span class="tag">Energetic</span>
+      </div>
+      <div class="why">
+        Evokes late-night glow-in-the-dark outdoor hangouts. Highly energetic and vibrant. Perfect for OLED glow aesthetic.
+      </div>
+      <div class="rating">
+        <div class="rating-item">
+          <div class="rating-label">Memorable</div>
+          <div class="rating-value">7/10</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-label">Modern</div>
+          <div class="rating-value">8/10</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-label">Domain</div>
+          <div class="rating-value">7/10</div>
+        </div>
+      </div>
+      <div class="vote-section">
+        <button class="vote-btn" onclick="vote('SideGlow', 'love')">I Love This</button>
+        <button class="vote-btn secondary" onclick="vote('SideGlow', 'maybe')">Maybe</button>
+      </div>
+    </div>
+
+    <!-- SideShenanigans -->
+    <div class="variant-card" data-category="bold compound">
+      <div class="logo-container">
+        <svg width="260" height="260" viewBox="0 0 260 260">
+          <!-- Tilted crown on pile of dice -->
+          <path d="M 90 140 L 100 110 L 120 120 L 130 100 L 140 120 L 160 110 L 170 140 Z"
+                fill="#FFD700" stroke="#FFD700" stroke-width="3" transform="rotate(-15 130 120)"/>
+          <!-- Dice -->
+          <rect x="100" y="150" width="25" height="25" rx="3" fill="#fff" stroke="#333" stroke-width="2"/>
+          <circle cx="108" cy="158" r="2" fill="#000"/>
+          <circle cx="117" cy="167" r="2" fill="#000"/>
+          <!-- Game gear -->
+          <circle cx="145" cy="162" r="12" fill="none" stroke="#00FF00" stroke-width="3"/>
+        </svg>
+      </div>
+      <div class="variant-name">SideShenanigans</div>
+      <div class="tagline">"Keep track of the chaos, bets, and rules you just made up."</div>
+      <div class="tags">
+        <span class="tag">2 Words</span>
+        <span class="tag highlight">Cheeky AF</span>
+        <span class="tag">Long Name</span>
+      </div>
+      <div class="why">
+        Fully embraces chaos and custom rules. Perfect for friend groups who make up games on the fly. Long but VERY memorable.
+      </div>
+      <div class="rating">
+        <div class="rating-item">
+          <div class="rating-label">Memorable</div>
+          <div class="rating-value">10/10</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-label">Modern</div>
+          <div class="rating-value">5/10</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-label">Domain</div>
+          <div class="rating-value">6/10</div>
+        </div>
+      </div>
+      <div class="vote-section">
+        <button class="vote-btn" onclick="vote('SideShenanigans', 'love')">I Love This</button>
+        <button class="vote-btn secondary" onclick="vote('SideShenanigans', 'maybe')">Maybe</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const votes = { love: [], maybe: [] };
+
+    function vote(name, type) {
+      votes[type].push(name);
+      console.log(`${type.toUpperCase()}: ${name}`);
+      console.log('Current votes:', votes);
+
+      const btn = event.target;
+      const card = btn.closest('.variant-card');
+
+      if (type === 'love') {
+        card.style.borderColor = '#00FF00';
+        card.style.background = 'linear-gradient(135deg, #001a00 0%, #003300 100%)';
+        btn.textContent = '✓ Voted!';
+        btn.style.background = '#00FFFF';
+      } else {
+        card.style.borderColor = '#666';
+        btn.textContent = '✓ Maybe';
+      }
+
+      setTimeout(() => {
+        if (type === 'love') {
+          btn.textContent = 'I Love This';
+          btn.style.background = '#00FF00';
+        } else {
+          btn.textContent = 'Maybe';
+        }
+      }, 2000);
+    }
+
+    function filter(category) {
+      const cards = document.querySelectorAll('.variant-card');
+      const buttons = document.querySelectorAll('.filter-bar button');
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      cards.forEach(card => {
+        if (category === 'all') {
+          card.style.display = 'block';
+        } else {
+          const categories = card.dataset.category || '';
+          card.style.display = categories.includes(category) ? 'block' : 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

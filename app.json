@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "birdies-and-bourbon",
-    "slug": "birdies-and-bourbon",
+    "name": "Yard Wars",
+    "slug": "yard-wars",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Name Concepts - Visual Comparison</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      padding: 40px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding-bottom: 30px;
+      border-bottom: 3px solid #333;
+    }
+    .header h1 {
+      font-size: 56px;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, #00FF00, #00FFFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .header p {
+      font-size: 20px;
+      color: #666;
+    }
+    .problem {
+      background: #1a0000;
+      border: 2px solid #FF0044;
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 40px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .problem h2 {
+      color: #FF0044;
+      margin-bottom: 15px;
+      font-size: 28px;
+    }
+    .problem ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .problem li {
+      padding: 10px 0;
+      padding-left: 30px;
+      position: relative;
+    }
+    .problem li:before {
+      content: "✗";
+      position: absolute;
+      left: 0;
+      color: #FF0044;
+      font-weight: bold;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+    .concept-card {
+      background: #1a1a1a;
+      border: 3px solid #333;
+      border-radius: 20px;
+      padding: 40px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .concept-card:hover {
+      border-color: #00FF00;
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 255, 0, 0.2);
+    }
+    .concept-card.featured {
+      border-color: #00FFFF;
+      background: linear-gradient(135deg, #1a1a1a 0%, #002020 100%);
+    }
+    .logo-container {
+      background: #000;
+      border-radius: 30px;
+      padding: 60px;
+      margin-bottom: 30px;
+      text-align: center;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .concept-name {
+      font-size: 42px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #00FFFF;
+    }
+    .concept-card.featured .concept-name {
+      font-size: 48px;
+      background: linear-gradient(135deg, #00FF00, #00FFFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .tagline {
+      font-size: 18px;
+      color: #999;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .why {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #ccc;
+      margin-bottom: 25px;
+      padding: 20px;
+      background: #0f0f0f;
+      border-radius: 10px;
+    }
+    .pros {
+      background: #001a00;
+      border-left: 4px solid #00FF00;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .pros h4 {
+      color: #00FF00;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .pros ul {
+      list-style: none;
+      font-size: 13px;
+      color: #99cc99;
+    }
+    .pros li:before {
+      content: "✓ ";
+      color: #00FF00;
+      font-weight: bold;
+    }
+    .vote-btn {
+      width: 100%;
+      padding: 15px;
+      background: #00FF00;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .vote-btn:hover {
+      background: #00FFFF;
+      transform: scale(1.05);
+    }
+    .runner-up {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>App Name Concepts</h1>
+    <p>Side Games Tracker for Disc Golf, Cornhole, Horseshoes & More</p>
+  </div>
+
+  <div class="problem">
+    <h2>Why "Birdies and Bourbon" Needs to Change</h2>
+    <ul>
+      <li><strong>Too niche:</strong> Not everyone drinks bourbon, alienates non-drinkers</li>
+      <li><strong>Activity-specific:</strong> "Birdies" locks us to disc golf only</li>
+      <li><strong>Limited expansion:</strong> Can't add cornhole, horseshoes, or other yard games</li>
+      <li><strong>Not memorable:</strong> Doesn't capture the competitive, side-bet vibe</li>
+    </ul>
+  </div>
+
+  <div class="grid">
+    <!-- Top Pick: SideShow -->
+    <div class="concept-card featured">
+      <div class="logo-container">
+        <svg width="240" height="240" viewBox="0 0 240 240">
+          <!-- Theater ticket stub with QR pattern -->
+          <defs>
+            <pattern id="qr-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <rect x="0" y="0" width="10" height="10" fill="#00FFFF"/>
+              <rect x="10" y="10" width="10" height="10" fill="#00FFFF"/>
+            </pattern>
+          </defs>
+          <!-- Ticket outline -->
+          <rect x="40" y="60" width="160" height="120" rx="10" fill="none" stroke="#00FFFF" stroke-width="4"/>
+          <!-- Tear line -->
+          <line x1="120" y1="60" x2="120" y2="180" stroke="#00FFFF" stroke-width="2" stroke-dasharray="5,5"/>
+          <!-- QR half -->
+          <rect x="125" y="65" width="70" height="110" fill="url(#qr-pattern)" opacity="0.6"/>
+          <!-- "S" letter -->
+          <text x="80" y="140" font-family="Arial Black" font-size="60" font-weight="bold" fill="#00FF00" text-anchor="middle">S</text>
+        </svg>
+      </div>
+      <div class="concept-name">SideShow</div>
+      <div class="tagline">"The side games that steal the spotlight."</div>
+      <div class="why">
+        Frames bets and modifiers as the MAIN entertainment. Turns any casual outdoor game into a spectacle. Works across all activities - disc golf, cornhole, horseshoes, anything.
+      </div>
+      <div class="pros">
+        <h4>Why This Works</h4>
+        <ul>
+          <li>Activity-agnostic (works for everything)</li>
+          <li>Memorable, single word, easy to say</li>
+          <li>Available domain: sideshow.app</li>
+          <li>Theater/entertainment vibe = fun, social</li>
+          <li>Logo works at all sizes (ticket + QR)</li>
+        </ul>
+      </div>
+      <button class="vote-btn" onclick="vote('SideShow')">Vote for SideShow</button>
+      <div class="runner-up">⭐ Top Recommendation</div>
+    </div>
+
+    <!-- YardShark -->
+    <div class="concept-card">
+      <div class="logo-container">
+        <svg width="240" height="240" viewBox="0 0 240 240">
+          <!-- Shark fin cutting through grass -->
+          <line x1="30" y1="140" x2="210" y2="140" stroke="#00FF00" stroke-width="8"/>
+          <!-- Fin -->
+          <path d="M 120 60 L 150 140 L 90 140 Z" fill="#00FFFF" stroke="#00FFFF" stroke-width="3"/>
+          <!-- Cut lines -->
+          <line x1="90" y1="140" x2="85" y2="145" stroke="#00FFFF" stroke-width="2"/>
+          <line x1="150" y1="140" x2="155" y2="145" stroke="#00FFFF" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="concept-name">YardShark</div>
+      <div class="tagline">"For the undisputed champion of the lawn."</div>
+      <div class="why">
+        Playful nod to "card shark" or "pool shark." Implies competitive skill and friendly wagering. The shark fin cutting through grass is instantly recognizable.
+      </div>
+      <div class="pros">
+        <h4>Why This Works</h4>
+        <ul>
+          <li>Fun, aggressive, competitive vibe</li>
+          <li>Works for all yard games</li>
+          <li>Great merch potential (shark fin icon)</li>
+          <li>Easy to remember and spell</li>
+        </ul>
+      </div>
+      <button class="vote-btn" onclick="vote('YardShark')">Vote for YardShark</button>
+    </div>
+
+    <!-- AnteUp -->
+    <div class="concept-card">
+      <div class="logo-container">
+        <svg width="240" height="240" viewBox="0 0 240 240">
+          <!-- Stack of chips with arrow -->
+          <circle cx="120" cy="160" r="50" fill="none" stroke="#FF8C00" stroke-width="6"/>
+          <circle cx="120" cy="140" r="50" fill="none" stroke="#FF8C00" stroke-width="6"/>
+          <circle cx="120" cy="120" r="50" fill="none" stroke="#FF8C00" stroke-width="6"/>
+          <!-- Arrow pointing up -->
+          <path d="M 120 120 L 120 40 M 100 60 L 120 40 L 140 60"
+                fill="none" stroke="#00FF00" stroke-width="8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="concept-name">AnteUp</div>
+      <div class="tagline">"Don't just play—make it interesting."</div>
+      <div class="why">
+        Action-oriented betting phrase. Challenges players to put skin in the game. Stack of chips with upward arrow = raise the stakes.
+      </div>
+      <div class="pros">
+        <h4>Why This Works</h4>
+        <ul>
+          <li>Classic betting terminology</li>
+          <li>Two-word name is memorable</li>
+          <li>Clear call-to-action vibe</li>
+          <li>Works across all betting/skins games</li>
+        </ul>
+      </div>
+      <button class="vote-btn" onclick="vote('AnteUp')">Vote for AnteUp</button>
+    </div>
+
+    <!-- Wildcard -->
+    <div class="concept-card">
+      <div class="logo-container">
+        <svg width="240" height="240" viewBox="0 0 240 240">
+          <!-- Playing card with sun cutout -->
+          <rect x="70" y="50" width="100" height="140" rx="10" fill="none" stroke="#00FFFF" stroke-width="4"/>
+          <!-- Sun symbol in center -->
+          <circle cx="120" cy="120" r="30" fill="#FF8C00"/>
+          <circle cx="120" cy="90" r="5" fill="#FF8C00"/>
+          <circle cx="120" cy="150" r="5" fill="#FF8C00"/>
+          <circle cx="90" cy="120" r="5" fill="#FF8C00"/>
+          <circle cx="150" cy="120" r="5" fill="#FF8C00"/>
+          <!-- Stars in corners -->
+          <text x="85" y="75" font-size="20" fill="#00FF00">★</text>
+          <text x="145" y="75" font-size="20" fill="#00FF00">★</text>
+        </svg>
+      </div>
+      <div class="concept-name">Wildcard</div>
+      <div class="tagline">"Add a little chaos to your game day."</div>
+      <div class="why">
+        Highlights card-based modifiers and custom rules. Playing card with outdoor sun = indoors/outdoors fusion. Unpredictable and fun.
+      </div>
+      <div class="pros">
+        <h4>Why This Works</h4>
+        <ul>
+          <li>One word, easy to remember</li>
+          <li>Card game association is perfect</li>
+          <li>Outdoor + card visual works great</li>
+          <li>Implies flexibility and customization</li>
+        </ul>
+      </div>
+      <button class="vote-btn" onclick="vote('Wildcard')">Vote for Wildcard</button>
+    </div>
+
+    <!-- TrashTalk -->
+    <div class="concept-card">
+      <div class="logo-container">
+        <svg width="240" height="240" viewBox="0 0 240 240">
+          <!-- Speech bubble with card inside -->
+          <path d="M 60 60 L 180 60 L 180 140 L 140 140 L 120 160 L 120 140 L 60 140 Z"
+                fill="none" stroke="#00FF00" stroke-width="4"/>
+          <!-- Wild card symbol -->
+          <rect x="100" y="85" width="40" height="60" rx="5" fill="#FF0044" opacity="0.8"/>
+          <text x="120" y="125" font-family="Arial Black" font-size="30" fill="#fff" text-anchor="middle">?</text>
+        </svg>
+      </div>
+      <div class="concept-name">TrashTalk</div>
+      <div class="tagline">"Play the cards you're dealt, heckle the rest."</div>
+      <div class="why">
+        Captures competitive banter and disruptive card modifiers. Speech bubble + wild card = talking smack with game-changing plays.
+      </div>
+      <div class="pros">
+        <h4>Why This Works</h4>
+        <ul>
+          <li>Perfect for competitive friend groups</li>
+          <li>Cheeky, memorable name</li>
+          <li>Social aspect built into brand</li>
+          <li>Logo tells the whole story</li>
+        </ul>
+      </div>
+      <button class="vote-btn" onclick="vote('TrashTalk')">Vote for TrashTalk</button>
+    </div>
+
+    <!-- Showdown -->
+    <div class="concept-card">
+      <div class="logo-container">
+        <svg width="240" height="240" viewBox="0 0 240 240">
+          <!-- Two neon lines accelerating toward each other -->
+          <line x1="40" y1="120" x2="110" y2="120" stroke="#00FF00" stroke-width="8"/>
+          <line x1="200" y1="120" x2="130" y2="120" stroke="#00FFFF" stroke-width="8"/>
+          <!-- Impact burst -->
+          <circle cx="120" cy="120" r="15" fill="#fff" opacity="0.8"/>
+          <line x1="120" y1="105" x2="120" y2="95" stroke="#fff" stroke-width="3"/>
+          <line x1="120" y1="135" x2="120" y2="145" stroke="#fff" stroke-width="3"/>
+          <line x1="105" y1="120" x2="95" y2="120" stroke="#fff" stroke-width="3"/>
+          <line x1="135" y1="120" x2="145" y2="120" stroke="#fff" stroke-width="3"/>
+        </svg>
+      </div>
+      <div class="concept-name">Showdown</div>
+      <div class="tagline">"Where casual yard games get serious."</div>
+      <div class="why">
+        Dramatic, face-to-face challenge. Two lines colliding = head-to-head competition. Perfect for final skins matches and tiebreakers.
+      </div>
+      <div class="pros">
+        <h4>Why This Works</h4>
+        <ul>
+          <li>Strong, action-oriented name</li>
+          <li>Western duel vibe = serious stakes</li>
+          <li>One word, easy domain</li>
+          <li>Logo is clean and modern</li>
+        </ul>
+      </div>
+      <button class="vote-btn" onclick="vote('Showdown')">Vote for Showdown</button>
+    </div>
+  </div>
+
+  <script>
+    function vote(name) {
+      const card = event.target.closest('.concept-card');
+      card.style.borderColor = '#00FF00';
+      card.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #001a00 100%)';
+
+      // Show confirmation
+      const btn = event.target;
+      const originalText = btn.textContent;
+      btn.textContent = `✓ Voted for ${name}`;
+      btn.style.background = '#00FFFF';
+
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '#00FF00';
+      }, 2000);
+
+      // Log to console
+      console.log(`Vote recorded for: ${name}`);
+    }
+  </script>
+</body>
+</html>
