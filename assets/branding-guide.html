@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birdies & Bourbon - Complete Branding Guide</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+    .hero {
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+      padding: 80px 40px;
+      text-align: center;
+      border-bottom: 3px solid #00FF00;
+    }
+    .hero h1 {
+      font-size: 72px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #00FF00, #00FFFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero .tagline {
+      font-size: 28px;
+      color: #FF8C00;
+      margin-bottom: 15px;
+    }
+    .hero .description {
+      font-size: 18px;
+      color: #999;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+    .section {
+      margin-bottom: 80px;
+    }
+    .section h2 {
+      font-size: 48px;
+      margin-bottom: 30px;
+      color: #00FFFF;
+      border-bottom: 2px solid #333;
+      padding-bottom: 15px;
+    }
+    .section h3 {
+      font-size: 32px;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      color: #00FF00;
+    }
+    .color-palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .color-swatch {
+      aspect-ratio: 1;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 25px;
+      border: 2px solid #333;
+      transition: transform 0.2s;
+    }
+    .color-swatch:hover {
+      transform: translateY(-5px);
+      border-color: #666;
+    }
+    .color-swatch .name {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .color-swatch .hex {
+      font-size: 16px;
+      font-family: 'Courier New', monospace;
+      opacity: 0.8;
+    }
+    .color-swatch .usage {
+      font-size: 13px;
+      margin-top: 8px;
+      opacity: 0.6;
+    }
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .icon-card {
+      background: #1a1a1a;
+      border: 2px solid #333;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+    }
+    .icon-card svg {
+      background: #000;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .icon-card h4 {
+      color: #00FFFF;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    .icon-card .size {
+      color: #666;
+      font-size: 14px;
+    }
+    .typography {
+      background: #1a1a1a;
+      border: 2px solid #333;
+      border-radius: 15px;
+      padding: 40px;
+      margin-top: 30px;
+    }
+    .type-sample {
+      margin: 30px 0;
+      padding: 30px 0;
+      border-bottom: 1px solid #333;
+    }
+    .type-sample:last-child { border-bottom: none; }
+    .type-sample .label {
+      color: #00FF00;
+      font-size: 14px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    .principle-card {
+      background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+      border: 2px solid #00FF00;
+      border-radius: 15px;
+      padding: 30px;
+    }
+    .principle-card h4 {
+      color: #00FF00;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    .principle-card p {
+      color: #999;
+      font-size: 15px;
+    }
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .screenshot-card {
+      background: #1a1a1a;
+      border: 2px solid #333;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+    }
+    .screenshot-card iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 10px;
+      background: #000;
+    }
+    .screenshot-card h4 {
+      color: #00FFFF;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    .files {
+      background: #0f0f0f;
+      border: 2px solid #FF8C00;
+      border-radius: 15px;
+      padding: 30px;
+      margin-top: 30px;
+    }
+    .files h3 {
+      color: #FF8C00;
+    }
+    .files ul {
+      list-style: none;
+      margin-top: 20px;
+    }
+    .files li {
+      padding: 12px 0;
+      border-bottom: 1px solid #222;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
+    .files li:last-child { border-bottom: none; }
+    code {
+      background: #000;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #00FF00;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>🥏 BIRDIES & BOURBON 🥃</h1>
+    <div class="tagline">Disc Golf Side Games • Offline-First • OLED Optimized</div>
+    <div class="description">
+      Complete branding guide for the disc golf companion app that pairs skins games with bourbon passport tracking.
+      Designed for outdoor play with battery-optimized true black and high-contrast neon colors.
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Color System -->
+    <section class="section">
+      <h2>Color System</h2>
+      <p>OLED-optimized palette with true black background and high-contrast neon accents for outdoor visibility.</p>
+
+      <div class="color-palette">
+        <div class="color-swatch" style="background: #000000; color: #fff;">
+          <div class="name">True Black</div>
+          <div class="hex">#000000</div>
+          <div class="usage">Primary background • Pixels off on OLED</div>
+        </div>
+
+        <div class="color-swatch" style="background: #00FF00; color: #000;">
+          <div class="name">Neon Green</div>
+          <div class="hex">#00FF00</div>
+          <div class="usage">Skins pot • Disc • Primary actions</div>
+        </div>
+
+        <div class="color-swatch" style="background: #FF8C00; color: #000;">
+          <div class="name">Bourbon Amber</div>
+          <div class="hex">#FF8C00</div>
+          <div class="usage">Bourbon passport • Warm accents</div>
+        </div>
+
+        <div class="color-swatch" style="background: #00FFFF; color: #000;">
+          <div class="name">Neon Cyan</div>
+          <div class="hex">#00FFFF</div>
+          <div class="usage">Rewards • Ice • Secondary accents</div>
+        </div>
+
+        <div class="color-swatch" style="background: #FF0044; color: #fff;">
+          <div class="name">Neon Red</div>
+          <div class="hex">#FF0044</div>
+          <div class="usage">Penalties • Alerts • Danger states</div>
+        </div>
+
+        <div class="color-swatch" style="background: #FFFFFF; color: #000;">
+          <div class="name">Pure White</div>
+          <div class="hex">#FFFFFF</div>
+          <div class="usage">Primary text • Maximum contrast</div>
+        </div>
+
+        <div class="color-swatch" style="background: #333333; color: #fff;">
+          <div class="name">Subtle Gray</div>
+          <div class="hex">#333333</div>
+          <div class="usage">Borders • Dividers • Disabled states</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App Icons -->
+    <section class="section">
+      <h2>App Icons</h2>
+      <p>Dual identity design: bourbon glass (top) + disc golf disc (bottom) = name's two halves.</p>
+
+      <div class="icon-grid">
+        <div class="icon-card">
+          <svg width="200" height="200" viewBox="0 0 1024 1024">
+            <rect width="1024" height="1024" fill="#000000"/>
+            <g transform="translate(512, 400)">
+              <path d="M -80 100 L -60 -100 L 60 -100 L 80 100 Z" fill="none" stroke="#FF8C00" stroke-width="8"/>
+              <path d="M -75 40 L -57 -80 L 57 -80 L 75 40 Z" fill="#FF8C00" opacity="0.3"/>
+              <rect x="-40" y="-40" width="30" height="30" fill="#00FFFF" opacity="0.4"/>
+            </g>
+            <g transform="translate(512, 650)">
+              <circle cx="0" cy="0" r="120" fill="none" stroke="#00FF00" stroke-width="8"/>
+              <circle cx="0" cy="0" r="90" fill="none" stroke="#00FF00" stroke-width="4" opacity="0.6"/>
+              <circle cx="0" cy="0" r="50" fill="#00FF00" opacity="0.2"/>
+            </g>
+            <text x="512" y="900" font-family="Arial Black" font-size="80" font-weight="bold" fill="#FFFFFF" text-anchor="middle">B&B</text>
+          </svg>
+          <h4>App Store Icon</h4>
+          <div class="size">1024×1024 px</div>
+        </div>
+
+        <div class="icon-card">
+          <svg width="150" height="150" viewBox="0 0 1024 1024">
+            <rect width="1024" height="1024" fill="#000000"/>
+            <g transform="translate(512, 400)">
+              <path d="M -80 100 L -60 -100 L 60 -100 L 80 100 Z" fill="none" stroke="#FF8C00" stroke-width="8"/>
+              <path d="M -75 40 L -57 -80 L 57 -80 L 75 40 Z" fill="#FF8C00" opacity="0.3"/>
+            </g>
+            <g transform="translate(512, 650)">
+              <circle cx="0" cy="0" r="120" fill="none" stroke="#00FF00" stroke-width="8"/>
+              <circle cx="0" cy="0" r="90" fill="none" stroke="#00FF00" stroke-width="4" opacity="0.6"/>
+            </g>
+            <text x="512" y="900" font-family="Arial Black" font-size="80" font-weight="bold" fill="#FFFFFF" text-anchor="middle">B&B</text>
+          </svg>
+          <h4>Home Screen</h4>
+          <div class="size">180×180 px (3x)</div>
+        </div>
+
+        <div class="icon-card">
+          <svg width="100" height="100" viewBox="0 0 1024 1024">
+            <rect width="1024" height="1024" fill="#000000"/>
+            <g transform="translate(512, 400)">
+              <path d="M -80 100 L -60 -100 L 60 -100 L 80 100 Z" fill="none" stroke="#FF8C00" stroke-width="8"/>
+              <path d="M -75 40 L -57 -80 L 57 -80 L 75 40 Z" fill="#FF8C00" opacity="0.3"/>
+            </g>
+            <g transform="translate(512, 650)">
+              <circle cx="0" cy="0" r="120" fill="none" stroke="#00FF00" stroke-width="8"/>
+            </g>
+            <text x="512" y="900" font-family="Arial Black" font-size="80" font-weight="bold" fill="#FFFFFF" text-anchor="middle">B&B</text>
+          </svg>
+          <h4>Notification</h4>
+          <div class="size">120×120 px (2x)</div>
+        </div>
+
+        <div class="icon-card">
+          <svg width="60" height="60" viewBox="0 0 1024 1024">
+            <rect width="1024" height="1024" fill="#000000"/>
+            <circle cx="512" cy="400" r="150" fill="none" stroke="#FF8C00" stroke-width="20"/>
+            <circle cx="512" cy="650" r="150" fill="none" stroke="#00FF00" stroke-width="20"/>
+          </svg>
+          <h4>Settings</h4>
+          <div class="size">58×58 px (2x)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Typography -->
+    <section class="section">
+      <h2>Typography</h2>
+
+      <div class="typography">
+        <div class="type-sample">
+          <div class="label">Heading 1 • Display</div>
+          <div style="font-size: 72pt; font-weight: bold; color: #fff;">Birdies & Bourbon</div>
+          <div style="color: #666; margin-top: 10px; font-size: 14px;">72pt Bold • -apple-system • Headlines, setup screen titles</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="label">Heading 2 • Section Headers</div>
+          <div style="font-size: 48pt; font-weight: 600; color: #00FFFF;">Active Round</div>
+          <div style="color: #666; margin-top: 10px; font-size: 14px;">48pt Semibold • Screen titles, major sections</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="label">Score Counter • Primary Data</div>
+          <div style="font-size: 72pt; font-weight: bold; color: #00FF00;">+$15</div>
+          <div style="color: #666; margin-top: 10px; font-size: 14px;">72pt Bold • Skins pot, player scores, large numbers</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="label">Player Names</div>
+          <div style="font-size: 24pt; font-weight: 500; color: #fff;">Charlie</div>
+          <div style="color: #666; margin-top: 10px; font-size: 14px;">24pt Medium • Player labels, card names</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="label">Body Text</div>
+          <div style="font-size: 16pt; color: #999;">Tap to assign chips. Swipe to remove. Long-press for details.</div>
+          <div style="color: #666; margin-top: 10px; font-size: 14px;">16pt Regular • Instructions, descriptions, chip badges</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Design Principles -->
+    <section class="section">
+      <h2>Design Principles</h2>
+
+      <div class="principles">
+        <div class="principle-card">
+          <h4>OLED Optimized</h4>
+          <p>True black (#000000) background turns off pixels on OLED screens, maximizing battery life during outdoor rounds.</p>
+        </div>
+
+        <div class="principle-card">
+          <h4>High Contrast</h4>
+          <p>Neon colors on black provide maximum visibility in bright sunlight. No pastels, no gradients that fade in daylight.</p>
+        </div>
+
+        <div class="principle-card">
+          <h4>Fat-Finger Friendly</h4>
+          <p>Minimum 48dp tap targets for outdoor use. Glove-friendly spacing. Score buttons sized for quick taps.</p>
+        </div>
+
+        <div class="principle-card">
+          <h4>Gesture-First</h4>
+          <p>Drag-drop chips, swipe actions, long-press details. Minimize modal dialogs and keyboard input.</p>
+        </div>
+
+        <div class="principle-card">
+          <h4>Smart Defaults</h4>
+          <p>Pre-fill scores to par. Tap only deviations. Push skins automatically. Reduce cognitive load mid-round.</p>
+        </div>
+
+        <div class="principle-card">
+          <h4>Offline-First</h4>
+          <p>Zero network calls. 100% local storage. No loading spinners. Crash recovery with atomic writes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- UI Mockups -->
+    <section class="section">
+      <h2>UI Mockups</h2>
+
+      <div class="screenshot-grid">
+        <div class="screenshot-card">
+          <iframe src="../storyboard-premium.html"></iframe>
+          <h4>Premium Storyboard</h4>
+        </div>
+
+        <div class="screenshot-card">
+          <iframe src="../storyboard.html"></iframe>
+          <h4>Original Storyboard</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- Asset Files -->
+    <section class="section">
+      <div class="files">
+        <h3>📁 Asset Files</h3>
+        <ul>
+          <li><code>assets/icon-source.svg</code> — Master app icon (1024×1024)</li>
+          <li><code>assets/splash-source.svg</code> — Launch screen template</li>
+          <li><code>assets/icon-preview.html</code> — Icon size previews</li>
+          <li><code>assets/branding-guide.html</code> — This file</li>
+          <li><code>storyboard-premium.html</code> — Premium UI mockups</li>
+          <li><code>storyboard.html</code> — Original UI mockups</li>
+        </ul>
+
+        <h3 style="margin-top: 30px;">🔧 Next Steps</h3>
+        <ul style="margin-top: 15px;">
+          <li>Generate PNG variants from icon-source.svg (1024, 180, 120, 60, 40 px)</li>
+          <li>Update <code>app.json</code> with icon path</li>
+          <li>Test on device home screen</li>
+          <li>Create Android adaptive icon (background + foreground layers)</li>
+          <li>Generate splash screen PNGs for iOS/Android</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

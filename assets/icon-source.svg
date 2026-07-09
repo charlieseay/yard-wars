@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- True black background (OLED optimized) -->
+  <rect width="1024" height="1024" fill="#000000"/>
+
+  <!-- Bourbon glass silhouette (neon amber) -->
+  <g id="bourbon-glass" transform="translate(512, 400)">
+    <!-- Glass body -->
+    <path d="M -80 100 L -60 -100 L 60 -100 L 80 100 Z"
+          fill="none"
+          stroke="#FF8C00"
+          stroke-width="8"/>
+
+    <!-- Bourbon liquid -->
+    <path d="M -75 40 L -57 -80 L 57 -80 L 75 40 Z"
+          fill="#FF8C00"
+          opacity="0.3"/>
+
+    <!-- Ice cubes -->
+    <rect x="-40" y="-40" width="30" height="30"
+          fill="#00FFFF"
+          opacity="0.4"/>
+    <rect x="15" y="-20" width="25" height="25"
+          fill="#00FFFF"
+          opacity="0.4"/>
+  </g>
+
+  <!-- Disc golf disc (neon green) -->
+  <g id="disc" transform="translate(512, 650)">
+    <!-- Disc outer ring -->
+    <circle cx="0" cy="0" r="120"
+            fill="none"
+            stroke="#00FF00"
+            stroke-width="8"/>
+
+    <!-- Disc inner detail -->
+    <circle cx="0" cy="0" r="90"
+            fill="none"
+            stroke="#00FF00"
+            stroke-width="4"
+            opacity="0.6"/>
+
+    <!-- Center flight plate -->
+    <circle cx="0" cy="0" r="50"
+            fill="#00FF00"
+            opacity="0.2"/>
+
+    <!-- Flight numbers (simplified) -->
+    <circle cx="0" cy="0" r="20"
+            fill="#00FF00"
+            opacity="0.4"/>
+  </g>
+
+  <!-- Connecting arc (subtle) -->
+  <path d="M 512 500 Q 450 575 512 650"
+        fill="none"
+        stroke="#333333"
+        stroke-width="3"
+        opacity="0.5"/>
+
+  <!-- Title text -->
+  <text x="512" y="900"
+        font-family="Arial Black, sans-serif"
+        font-size="80"
+        font-weight="bold"
+        fill="#FFFFFF"
+        text-anchor="middle">
+    B&amp;B
+  </text>
+
+  <!-- Subtitle -->
+  <text x="512" y="970"
+        font-family="Arial, sans-serif"
+        font-size="32"
+        fill="#00FFFF"
+        text-anchor="middle">
+    BIRDIES &amp; BOURBON
+  </text>
+</svg>

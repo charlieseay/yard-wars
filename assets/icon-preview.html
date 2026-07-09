@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birdies & Bourbon - App Icon Preview</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+      color: #ffffff;
+      padding: 40px;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #00FF00, #00FFFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      font-size: 20px;
+      color: #999;
+      margin-bottom: 40px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .preview-card {
+      background: #1a1a1a;
+      border: 2px solid #333;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+    }
+    .preview-card h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #00FFFF;
+    }
+    .icon-container {
+      background: #000;
+      border-radius: 30px;
+      padding: 40px;
+      display: inline-block;
+      box-shadow: 0 20px 60px rgba(0, 255, 0, 0.2);
+    }
+    .icon-1024 { width: 300px; height: 300px; }
+    .icon-512 { width: 150px; height: 150px; }
+    .icon-180 { width: 90px; height: 90px; }
+    .icon-120 { width: 60px; height: 60px; }
+    .icon-60 { width: 30px; height: 30px; }
+    .specs {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+    .design-notes {
+      background: #0a0a0a;
+      border: 2px solid #00FF00;
+      border-radius: 15px;
+      padding: 30px;
+      margin-top: 40px;
+    }
+    .design-notes h3 {
+      color: #00FF00;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+    .design-notes ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .design-notes li {
+      padding: 8px 0;
+      border-bottom: 1px solid #222;
+    }
+    .design-notes li:last-child { border-bottom: none; }
+    .color-chip {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      margin-right: 10px;
+      vertical-align: middle;
+      border: 1px solid #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🥏 Birdies & Bourbon</h1>
+    <p class="subtitle">App Icon & Branding Assets Preview</p>
+
+    <div class="grid">
+      <div class="preview-card">
+        <h2>App Store Icon (1024×1024)</h2>
+        <div class="icon-container">
+          <svg class="icon-1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+            <rect width="1024" height="1024" fill="#000000" rx="180"/>
+            <g transform="translate(512, 400)">
+              <path d="M -80 100 L -60 -100 L 60 -100 L 80 100 Z" fill="none" stroke="#FF8C00" stroke-width="8"/>
+              <path d="M -75 40 L -57 -80 L 57 -80 L 75 40 Z" fill="#FF8C00" opacity="0.3"/>
+              <rect x="-40" y="-40" width="30" height="30" fill="#00FFFF" opacity="0.4"/>
+              <rect x="15" y="-20" width="25" height="25" fill="#00FFFF" opacity="0.4"/>
+            </g>
+            <g transform="translate(512, 650)">
+              <circle cx="0" cy="0" r="120" fill="none" stroke="#00FF00" stroke-width="8"/>
+              <circle cx="0" cy="0" r="90" fill="none" stroke="#00FF00" stroke-width="4" opacity="0.6"/>
+              <circle cx="0" cy="0" r="50" fill="#00FF00" opacity="0.2"/>
+              <circle cx="0" cy="0" r="20" fill="#00FF00" opacity="0.4"/>
+            </g>
+            <path d="M 512 500 Q 450 575 512 650" fill="none" stroke="#333333" stroke-width="3" opacity="0.5"/>
+            <text x="512" y="900" font-family="Arial Black" font-size="80" font-weight="bold" fill="#FFFFFF" text-anchor="middle">B&amp;B</text>
+            <text x="512" y="970" font-family="Arial" font-size="32" fill="#00FFFF" text-anchor="middle">BIRDIES &amp; BOURBON</text>
+          </svg>
+        </div>
+        <div class="specs">
+          <strong>1024×1024 px</strong><br>
+          Required for App Store Connect<br>
+          No alpha channel, no rounded corners
+        </div>
+      </div>
+
+      <div class="preview-card">
+        <h2>iOS Home Screen (180×180)</h2>
+        <div class="icon-container">
+          <svg class="icon-180" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+            <rect width="1024" height="1024" fill="#000000"/>
+            <g transform="translate(512, 400)">
+              <path d="M -80 100 L -60 -100 L 60 -100 L 80 100 Z" fill="none" stroke="#FF8C00" stroke-width="8"/>
+              <path d="M -75 40 L -57 -80 L 57 -80 L 75 40 Z" fill="#FF8C00" opacity="0.3"/>
+              <rect x="-40" y="-40" width="30" height="30" fill="#00FFFF" opacity="0.4"/>
+            </g>
+            <g transform="translate(512, 650)">
+              <circle cx="0" cy="0" r="120" fill="none" stroke="#00FF00" stroke-width="8"/>
+              <circle cx="0" cy="0" r="90" fill="none" stroke="#00FF00" stroke-width="4" opacity="0.6"/>
+              <circle cx="0" cy="0" r="50" fill="#00FF00" opacity="0.2"/>
+            </g>
+            <text x="512" y="900" font-family="Arial Black" font-size="80" font-weight="bold" fill="#FFFFFF" text-anchor="middle">B&amp;B</text>
+          </svg>
+        </div>
+        <div class="specs">
+          <strong>180×180 px (3x)</strong><br>
+          iPhone home screen<br>
+          iOS applies rounded corners automatically
+        </div>
+      </div>
+
+      <div class="preview-card">
+        <h2>Notification Icon (120×120)</h2>
+        <div class="icon-container">
+          <svg class="icon-120" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+            <rect width="1024" height="1024" fill="#000000"/>
+            <g transform="translate(512, 400)">
+              <path d="M -80 100 L -60 -100 L 60 -100 L 80 100 Z" fill="none" stroke="#FF8C00" stroke-width="8"/>
+              <path d="M -75 40 L -57 -80 L 57 -80 L 75 40 Z" fill="#FF8C00" opacity="0.3"/>
+            </g>
+            <g transform="translate(512, 650)">
+              <circle cx="0" cy="0" r="120" fill="none" stroke="#00FF00" stroke-width="8"/>
+              <circle cx="0" cy="0" r="90" fill="none" stroke="#00FF00" stroke-width="4" opacity="0.6"/>
+            </g>
+            <text x="512" y="900" font-family="Arial Black" font-size="80" font-weight="bold" fill="#FFFFFF" text-anchor="middle">B&amp;B</text>
+          </svg>
+        </div>
+        <div class="specs">
+          <strong>120×120 px (2x)</strong><br>
+          Notifications, Spotlight<br>
+          Simplified for small size
+        </div>
+      </div>
+
+      <div class="preview-card">
+        <h2>Settings Icon (58×58)</h2>
+        <div class="icon-container">
+          <svg class="icon-60" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+            <rect width="1024" height="1024" fill="#000000"/>
+            <circle cx="512" cy="400" r="150" fill="none" stroke="#FF8C00" stroke-width="20"/>
+            <circle cx="512" cy="650" r="150" fill="none" stroke="#00FF00" stroke-width="20"/>
+          </svg>
+        </div>
+        <div class="specs">
+          <strong>58×58 px (2x)</strong><br>
+          Settings app icon<br>
+          Ultra-simplified symbols only
+        </div>
+      </div>
+    </div>
+
+    <div class="design-notes">
+      <h3>Design System</h3>
+      <ul>
+        <li>
+          <span class="color-chip" style="background: #000000;"></span>
+          <strong>Background:</strong> True black (#000000) - OLED pixels off = battery savings
+        </li>
+        <li>
+          <span class="color-chip" style="background: #00FF00;"></span>
+          <strong>Disc / Skins:</strong> Neon green (#00FF00) - high visibility outdoors
+        </li>
+        <li>
+          <span class="color-chip" style="background: #FF8C00;"></span>
+          <strong>Bourbon:</strong> Amber (#FF8C00) - warm, appetizing
+        </li>
+        <li>
+          <span class="color-chip" style="background: #00FFFF;"></span>
+          <strong>Ice / Accent:</strong> Cyan (#00FFFF) - cool contrast
+        </li>
+        <li>
+          <span class="color-chip" style="background: #FFFFFF;"></span>
+          <strong>Text:</strong> Pure white (#FFFFFF) - maximum contrast
+        </li>
+      </ul>
+      <br>
+      <h3>Icon Philosophy</h3>
+      <ul>
+        <li><strong>Dual Identity:</strong> Bourbon glass (top) + disc golf disc (bottom) = name's two halves</li>
+        <li><strong>OLED Optimized:</strong> True black background turns off pixels on OLED screens</li>
+        <li><strong>High Contrast:</strong> Neon colors pop in sunlight (outdoor app)</li>
+        <li><strong>Scalable:</strong> Simple shapes work at all sizes (1024px → 29px)</li>
+        <li><strong>Memorable:</strong> Unique combo no other disc golf app has</li>
+      </ul>
+    </div>
+
+    <div class="design-notes" style="margin-top: 30px; border-color: #FF8C00;">
+      <h3 style="color: #FF8C00;">Next Steps</h3>
+      <ul>
+        <li><strong>Generate PNGs:</strong> Convert icon-source.svg to required iOS sizes</li>
+        <li><strong>Update app.json:</strong> Configure icon path in Expo config</li>
+        <li><strong>Test on device:</strong> Verify home screen appearance</li>
+        <li><strong>Create adaptive icon:</strong> Android version with background layer</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
