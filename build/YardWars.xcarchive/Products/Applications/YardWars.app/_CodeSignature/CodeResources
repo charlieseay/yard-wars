@@ -22,7 +22,7 @@
 		</data>
 		<key>EXConstants.bundle/app.config</key>
 		<data>
-		N4MFfNGMvGTyUCtPBnhhjUCSIeI=
+		Bg1tvXXi0al6EgblMDWzpIViBDQ=
 		</data>
 		<key>Expo.plist</key>
 		<data>
@@ -42,7 +42,7 @@
 		</data>
 		<key>Frameworks/ExpoFileSystem.framework/ExpoFileSystem</key>
 		<data>
-		48xYSl6W0FAL7PgYiIob5iRe6d4=
+		hxY07WPjinY+djGBaRupur/Lphs=
 		</data>
 		<key>Frameworks/ExpoFileSystem.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/ExpoFont.framework/ExpoFont</key>
 		<data>
-		SA9rXeRxeEJcQNBf7BWHGl2Oyhw=
+		8vYCPziiUofT57a0Dx5tP9a5GaE=
 		</data>
 		<key>Frameworks/ExpoFont.framework/Info.plist</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Frameworks/ExpoModulesCore.framework/ExpoModulesCore</key>
 		<data>
-		s3KTt/SFHYl8AFKFBPqX4OnRY7g=
+		gf4DlUtyDPMWz22vXKdVyN68oo0=
 		</data>
 		<key>Frameworks/ExpoModulesCore.framework/Info.plist</key>
 		<data>
@@ -78,7 +78,7 @@
 		</data>
 		<key>Frameworks/ExpoModulesJSI.framework/ExpoModulesJSI</key>
 		<data>
-		OPu4eSeEO197EzbPTeCeeP5cR5w=
+		Ln12MUD6cD4WXjY4sqrkhgaBWI0=
 		</data>
 		<key>Frameworks/ExpoModulesJSI.framework/Info.plist</key>
 		<data>
@@ -90,7 +90,7 @@
 		</data>
 		<key>Frameworks/ExpoModulesWorklets.framework/ExpoModulesWorklets</key>
 		<data>
-		g0X2vRYR2Yrx6drUf+f4Ne/6JGc=
+		PxZz+PO3B8/mBbN2R5exuSloqQI=
 		</data>
 		<key>Frameworks/ExpoModulesWorklets.framework/Info.plist</key>
 		<data>
@@ -106,7 +106,7 @@
 		</data>
 		<key>Frameworks/React.framework/React</key>
 		<data>
-		MXOC6l3YdyVX/v27SwsaIQE/r9c=
+		KrMrxulq8ANKffPC5xcyrXoSrDc=
 		</data>
 		<key>Frameworks/React.framework/_CodeSignature/CodeResources</key>
 		<data>
@@ -118,7 +118,7 @@
 		</data>
 		<key>Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies</key>
 		<data>
-		33CTocoI20nL7A52WGI7lXT8cBY=
+		5LAhFHUjfyXWek23cDlzCM08vas=
 		</data>
 		<key>Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies_boost.bundle/Info.plist</key>
 		<data>
@@ -158,11 +158,11 @@
 		</data>
 		<key>Frameworks/hermesvm.framework/hermesvm</key>
 		<data>
-		swSepC3U1Z3gPlMApx4VGONerv8=
+		dKhFMO0D+T9NthYGD+5egRjsMIM=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		MuhFK5oeCK2ZJmCvKdo6F+c9RCA=
+		l43qn1N4gTJOheTdpqVfYp89VAA=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -222,11 +222,11 @@
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		AcxQ3WyfPNJxl3S3Y6CrFppeW80=
+		JSPZhSEspg1hX5To9yRS512UM8A=
 		</data>
 		<key>main.jsbundle</key>
 		<data>
-		tBKt73NERmn561KcFEpbiBdsWGU=
+		maowD+juINAEXKEt0aebx28tdpo=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -263,7 +263,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			efjZZyv1qYQ9BY8+z8/WCzVDAyaY46F1NZSJ/yO80VQ=
+			2ajuBs8/S+koZ0tGoNDcx1Xgr/CEJuqZTb5+r9ZO69k=
 			</data>
 		</dict>
 		<key>Expo.plist</key>
@@ -298,7 +298,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			I/zZeIlbseXWT01obPRCVXlR5ZKHE8NxyS9VNVMYctc=
+			4YHrAqYuDiIN7BogrYbp8ChbYF44mJqTd32Xxcqy+GE=
 			</data>
 		</dict>
 		<key>Frameworks/ExpoFileSystem.framework/Info.plist</key>
@@ -319,7 +319,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			K+AR+BnJB82wowZCCvMWpmC3suR5zdcFGvU+kzdnNC8=
+			ycCS85VhmOWR7cAwHNHCjhrC/Hk8xb5w8fUOdSDg+yo=
 			</data>
 		</dict>
 		<key>Frameworks/ExpoFont.framework/Info.plist</key>
@@ -340,7 +340,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZcE4F7bnNDBYgD1i8Jw/3Rf0ERdfnDhC/Iz+qeBUeMY=
+			Hb9vAqdfEPKxOeKxBhsyhA0Uq1V0j/KcpNVUCT3fVBs=
 			</data>
 		</dict>
 		<key>Frameworks/ExpoModulesCore.framework/Info.plist</key>
@@ -361,7 +361,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			KcQlCRLhTH2SUGohPGuFjCiJKKaQN1G78+hcGLJz1Rs=
+			dfEkeMi4EICeSzYPgadBUuBqEau5stX/Vmtf6p4TgWw=
 			</data>
 		</dict>
 		<key>Frameworks/ExpoModulesJSI.framework/Info.plist</key>
@@ -382,7 +382,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			X/ew5JhWdIfejXHwbkqbsJabRtJu/2/pDvKncaOte5M=
+			qQ3LfmEwseu1hSGeQhKxaCCFUSh6+DZNheJrVGNUkSY=
 			</data>
 		</dict>
 		<key>Frameworks/ExpoModulesWorklets.framework/Info.plist</key>
@@ -410,7 +410,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OsKEnk1i2+J1pjx4M0SK0cpCAp5fMYjvJFzCD8dvOT0=
+			FpiEsDxtx6a8GEsWEQQ21du3gHH4hbeVVe9MRkZcXaA=
 			</data>
 		</dict>
 		<key>Frameworks/React.framework/_CodeSignature/CodeResources</key>
@@ -431,7 +431,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Xi/ItE4Sufzto/uX3q4mJKoc9pDzwIabsoFfl+Bi61k=
+			ybgX1tiJ3F0JtlCepDBFWTTrJF5P6ZTJMTiCQA3mKVI=
 			</data>
 		</dict>
 		<key>Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies_boost.bundle/Info.plist</key>
@@ -501,7 +501,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			d1tcfjjESPz1n+A8l+u3XzR2Ibz7w7QyLJBxqsxijaU=
+			BhUbx5AM+Bk0U7fOiEYq+IPzkZYgblIMREBaIPMG3fU=
 			</data>
 		</dict>
 		<key>PrivacyInfo.xcprivacy</key>
@@ -599,14 +599,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			VRpCCUiYSiWO1EjLhrZL6B0izoe0AytXkfOh118kqZE=
+			3UenYuENe/7QTMRQBL7tGr8WkSPdZpoaEhxfR1HHZm0=
 			</data>
 		</dict>
 		<key>main.jsbundle</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RnHl+8FPjEuMI77Vb3IWQ+5JjgLUi+3ngkamBwsLyXA=
+			kwxBsBZrJjA4CODhttSXWANoYM6tKbx5IJJGnOgnLgM=
 			</data>
 		</dict>
 	</dict>
