@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yard Wars - Final Brand Identity</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #000;
+      color: #fff;
+    }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: radial-gradient(circle at center, #1a0000 0%, #000 70%);
+      padding: 40px;
+      border-bottom: 5px solid #FF0044;
+    }
+    .logo-lockup {
+      margin-bottom: 60px;
+    }
+    .logo-container {
+      background: #000;
+      border: 4px solid #00FF00;
+      border-radius: 40px;
+      padding: 80px;
+      margin-bottom: 40px;
+      box-shadow: 0 30px 80px rgba(0, 255, 0, 0.4);
+    }
+    .app-name {
+      font-size: 120px;
+      font-weight: 900;
+      color: #FF0044;
+      text-shadow: 0 0 60px rgba(255, 0, 68, 0.8);
+      letter-spacing: -3px;
+      margin-bottom: 20px;
+    }
+    .tagline {
+      font-size: 48px;
+      color: #00FF00;
+      font-weight: bold;
+      text-shadow: 0 0 40px rgba(0, 255, 0, 0.6);
+    }
+    .specs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1400px;
+      margin: 80px auto;
+      padding: 0 40px;
+    }
+    .spec-card {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      border: 3px solid #333;
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+    }
+    .spec-card h3 {
+      font-size: 28px;
+      color: #00FFFF;
+      margin-bottom: 20px;
+    }
+    .spec-card .value {
+      font-size: 36px;
+      font-weight: bold;
+      color: #FF0044;
+      margin-bottom: 15px;
+    }
+    .spec-card .desc {
+      font-size: 16px;
+      color: #999;
+      line-height: 1.6;
+    }
+    .colors {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+    .colors h2 {
+      font-size: 56px;
+      color: #00FF00;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+    .color-swatch {
+      aspect-ratio: 1;
+      border-radius: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      border: 3px solid #333;
+      transition: all 0.3s;
+    }
+    .color-swatch:hover {
+      transform: translateY(-10px) scale(1.05);
+      border-color: #666;
+    }
+    .color-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .color-hex {
+      font-family: 'Courier New', monospace;
+      font-size: 18px;
+      opacity: 0.9;
+    }
+    .footer {
+      text-align: center;
+      padding: 80px 40px;
+      background: #0a0a0a;
+      border-top: 3px solid #333;
+    }
+    .footer h2 {
+      font-size: 48px;
+      color: #FF0044;
+      margin-bottom: 30px;
+    }
+    .footer p {
+      font-size: 20px;
+      color: #666;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 40px auto 0;
+    }
+    .checklist-item {
+      padding: 20px;
+      background: #000;
+      border: 2px solid #00FF00;
+      border-radius: 15px;
+      font-size: 16px;
+      text-align: left;
+    }
+    .checklist-item.done:before {
+      content: "✓ ";
+      color: #00FF00;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    .checklist-item.pending:before {
+      content: "◯ ";
+      color: #666;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="logo-lockup">
+      <div class="logo-container">
+        <svg width="300" height="300" viewBox="0 0 300 300">
+          <!-- Tactical Shield Logo -->
+          <defs>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- Shield crest -->
+          <path d="M 150 30 L 60 75 L 60 180 L 150 270 L 240 180 L 240 75 Z"
+                fill="none"
+                stroke="#00FF00"
+                stroke-width="6"
+                filter="url(#glow)"/>
+
+          <!-- Inner shield detail -->
+          <path d="M 150 50 L 80 85 L 80 170 L 150 240 L 220 170 L 220 85 Z"
+                fill="none"
+                stroke="#00FF00"
+                stroke-width="3"
+                opacity="0.4"/>
+
+          <!-- Crossed elements (disc basket + cornhole) -->
+          <line x1="100" y1="100" x2="200" y2="200"
+                stroke="#FF0044"
+                stroke-width="5"
+                filter="url(#glow)"/>
+          <line x1="200" y1="100" x2="100" y2="200"
+                stroke="#00FFFF"
+                stroke-width="5"
+                filter="url(#glow)"/>
+
+          <!-- Center emblem -->
+          <circle cx="150" cy="150" r="30"
+                  fill="#000"
+                  stroke="#00FF00"
+                  stroke-width="4"
+                  filter="url(#glow)"/>
+          <text x="150" y="165"
+                font-family="Arial Black"
+                font-size="36"
+                font-weight="bold"
+                fill="#00FF00"
+                text-anchor="middle">YW</text>
+        </svg>
+      </div>
+      <div class="app-name">YARD WARS</div>
+      <div class="tagline">Friendly games. Serious stakes.</div>
+    </div>
+  </div>
+
+  <div class="specs">
+    <div class="spec-card">
+      <h3>Brand Type</h3>
+      <div class="value">Competitive</div>
+      <div class="desc">High energy name that fits card modifiers, sabotage, and betting mechanics</div>
+    </div>
+
+    <div class="spec-card">
+      <h3>Target Audience</h3>
+      <div class="value">Yard Gamers</div>
+      <div class="desc">Disc golf, cornhole, horseshoes — any outdoor activity with side bets</div>
+    </div>
+
+    <div class="spec-card">
+      <h3>Platform</h3>
+      <div class="value">iOS + Android</div>
+      <div class="desc">React Native / Expo, offline-first, OLED optimized</div>
+    </div>
+  </div>
+
+  <div class="colors">
+    <h2>Color Palette</h2>
+    <div class="color-grid">
+      <div class="color-swatch" style="background: #000000; color: #fff;">
+        <div class="color-name">True Black</div>
+        <div class="color-hex">#000000</div>
+      </div>
+      <div class="color-swatch" style="background: #00FF00; color: #000;">
+        <div class="color-name">Neon Green</div>
+        <div class="color-hex">#00FF00</div>
+      </div>
+      <div class="color-swatch" style="background: #FF0044; color: #fff;">
+        <div class="color-name">Neon Red</div>
+        <div class="color-hex">#FF0044</div>
+      </div>
+      <div class="color-swatch" style="background: #00FFFF; color: #000;">
+        <div class="color-name">Neon Cyan</div>
+        <div class="color-hex">#00FFFF</div>
+      </div>
+      <div class="color-swatch" style="background: #FF8C00; color: #000;">
+        <div class="color-name">Amber</div>
+        <div class="color-hex">#FF8C00</div>
+      </div>
+      <div class="color-swatch" style="background: #FFFFFF; color: #000;">
+        <div class="color-name">Pure White</div>
+        <div class="color-hex">#FFFFFF</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h2>Rebrand Complete ✓</h2>
+    <p>
+      Formerly "Birdies and Bourbon" — rebranded to support all yard games (not just disc golf)
+      and appeal to a wider audience (not just bourbon drinkers). Trademark clearance: App stores clean,
+      acceptable risk from offline brands in different industries.
+    </p>
+
+    <div class="checklist">
+      <div class="checklist-item done">Name selected: Yard Wars</div>
+      <div class="checklist-item done">Tagline: "Friendly games. Serious stakes."</div>
+      <div class="checklist-item done">package.json + app.json updated</div>
+      <div class="checklist-item done">Directory renamed: yard-wars</div>
+      <div class="checklist-item done">Vault folder renamed</div>
+      <div class="checklist-item done">Project note updated</div>
+      <div class="checklist-item pending">Create new GitHub repo</div>
+      <div class="checklist-item pending">Update git remote</div>
+      <div class="checklist-item pending">Regenerate app icons</div>
+      <div class="checklist-item pending">Update all docs</div>
+      <div class="checklist-item pending">Test automation with new name</div>
+      <div class="checklist-item pending">Product page on seayniclabs.com</div>
+    </div>
+  </div>
+</body>
+</html>
