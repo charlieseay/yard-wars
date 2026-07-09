@@ -33,6 +33,20 @@
 
 ## Quick Start
 
+### Automated Testing (Recommended)
+
+**One command to validate everything:**
+
+```bash
+./scripts/test-automation.sh
+```
+
+Runs pre-flight validation → starts dev server → monitors device connection → generates test report.
+
+See [AUTOMATED-TESTING.md](./AUTOMATED-TESTING.md) for full details.
+
+### Manual Setup
+
 ```bash
 # Install dependencies
 npm install

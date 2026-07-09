@@ -1,44 +1,72 @@
 /**
- * OLED-optimized color palette for Birdies and Bourbon
+ * Premium OLED-optimized color palette
  * True black (#000000) pixels are powered OFF on OLED screens = massive battery savings
- * High-contrast neon accents for outdoor sunlight visibility
+ * Refined gradient accents with depth and sophistication
  */
 
 export const colors = {
-  // Primary - OLED True Black
-  background: '#000000', // Pixels literally off = battery saver
+  // Backgrounds - OLED optimized layers
+  background: '#000000',      // Pure black = pixels off
+  surface: '#0a0a0a',        // Subtle elevation
+  surfaceElevated: '#141414', // Card backgrounds
+  surfaceHighlight: '#1a1a1a', // Interactive states
 
-  // Text
-  textPrimary: '#FFFFFF', // Pure white for maximum contrast
-  textSecondary: '#CCCCCC', // Slightly dimmed for secondary info
-  textDisabled: '#666666', // Dimmed for disabled states
+  // Text hierarchy (refined grays)
+  textPrimary: '#FFFFFF',
+  textSecondary: '#a0a0a0',
+  textTertiary: '#707070',
+  textDisabled: '#4a4a4a',
 
-  // Neon Accents - High visibility in sunlight
-  neonGreen: '#00FF00', // Skins indicator
-  neonRed: '#FF0044', // Penalty chips
-  neonCyan: '#00FFFF', // Reward chips
-  neonYellow: '#FFFF00', // Active modifiers
-  neonPurple: '#FF00FF', // Special actions
+  // Primary brand (premium teal-green)
+  primary: '#00FF88',
+  primaryDim: '#00CC6A',
+  primaryDark: '#00994F',
+  primaryGlow: 'rgba(0, 255, 136, 0.2)',
 
-  // Borders & Dividers
-  border: '#333333', // Subtle gray for structure
-  divider: '#222222', // Even more subtle
+  // Semantic colors (refined from harsh neon)
+  success: '#00FF88',
+  error: '#FF3B5C',
+  warning: '#FFB020',
+  info: '#00D9FF',
 
-  // Semantic Colors
-  success: '#00FF00',
-  error: '#FF0044',
-  warning: '#FFFF00',
-  info: '#00FFFF',
+  // Chips
+  chipPositive: '#00FF88',
+  chipNegative: '#FF3B5C',
+  chipNeutral: '#FFB020',
 
-  // Player Color Options (high-contrast neons)
+  // Borders & dividers (subtle depth)
+  borderSubtle: '#1a1a1a',
+  border: '#2a2a2a',
+  borderAccent: '#3a3a3a',
+  divider: '#1a1a1a',
+
+  // Glass morphism
+  glassBg: 'rgba(20, 20, 20, 0.85)',
+  glassHighlight: 'rgba(255, 255, 255, 0.05)',
+  glassBorder: 'rgba(255, 255, 255, 0.08)',
+
+  // Shadows & glows (premium depth)
+  shadowHeavy: 'rgba(0, 0, 0, 0.8)',
+  glowPrimary: 'rgba(0, 255, 136, 0.25)',
+  glowError: 'rgba(255, 59, 92, 0.25)',
+  glowWarning: 'rgba(255, 176, 32, 0.25)',
+
+  // Player colors (vibrant but refined)
   playerColors: [
-    '#00FF00', // Green
-    '#FF0044', // Red
-    '#00FFFF', // Cyan
-    '#FFFF00', // Yellow
-    '#FF00FF', // Magenta
-    '#FF8800', // Orange
+    '#00FF88',  // Teal-green
+    '#00D9FF',  // Cyan
+    '#FF3B5C',  // Pink-red
+    '#FFB020',  // Amber
+    '#A78BFA',  // Purple
+    '#FB923C',  // Orange
   ],
+
+  // Legacy neon (keep for backward compat)
+  neonGreen: '#00FF88',
+  neonRed: '#FF3B5C',
+  neonCyan: '#00D9FF',
+  neonYellow: '#FFB020',
+  neonPurple: '#A78BFA',
 } as const;
 
 export type Colors = typeof colors;

@@ -13,9 +13,10 @@ import { generateUUID } from '../../utils/uuid';
 interface SetupScreenProps {
   onStartRound: (roundState: RoundState) => void;
   onCustomGame?: () => void;
+  onHistory?: () => void;
 }
 
-export function SetupScreen({ onStartRound, onCustomGame }: SetupScreenProps) {
+export function SetupScreen({ onStartRound, onCustomGame, onHistory }: SetupScreenProps) {
   const [playerNames, setPlayerNames] = useState<string[]>(['', '', '', '']);
   const [selectedDeckId, setSelectedDeckId] = useState('retribution-deck');
   const [skinsValue, setSkinsValue] = useState('5');
@@ -124,6 +125,12 @@ export function SetupScreen({ onStartRound, onCustomGame }: SetupScreenProps) {
           <Text style={styles.customButtonText}>🎨 CREATE CUSTOM GAME</Text>
         </TouchableOpacity>
       )}
+
+      {onHistory && (
+        <TouchableOpacity style={styles.historyButton} onPress={onHistory}>
+          <Text style={styles.historyButtonText}>🥃 BOURBON & BIRDIES PASSPORT</Text>
+        </TouchableOpacity>
+      )}
     </ScrollView>
   );
 }
@@ -211,6 +218,18 @@ const styles = StyleSheet.create({
     marginTop: theme.spacing.md,
   },
   customButtonText: {
+    ...theme.typography.body,
+    color: theme.colors.background,
+    fontWeight: '600',
+  },
+  historyButton: {
+    backgroundColor: theme.colors.neonYellow,
+    borderRadius: 8,
+    padding: theme.spacing.md,
+    alignItems: 'center',
+    marginTop: theme.spacing.md,
+  },
+  historyButtonText: {
     ...theme.typography.body,
     color: theme.colors.background,
     fontWeight: '600',

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birdies & Bourbon - Premium UI Storyboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 56px;
+      font-weight: 800;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: #a0a0a0;
+      text-align: center;
+      margin-bottom: 80px;
+      font-weight: 500;
+    }
+
+    .premium-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #00FF88 0%, #00CC6A 100%);
+      color: #000;
+      padding: 8px 16px;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    .screen-section {
+      margin-bottom: 120px;
+    }
+
+    .screen-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .screen-title {
+      font-size: 40px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .screen-description {
+      color: #a0a0a0;
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .mockup-wrapper {
+      display: flex;
+      justify-content: center;
+      perspective: 1000px;
+    }
+
+    .mockup {
+      background: #000;
+      border: 3px solid #1a1a1a;
+      border-radius: 24px;
+      padding: 40px 24px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 20px 60px rgba(0, 0, 0, 0.8),
+        0 0 80px rgba(0, 255, 136, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .mockup:hover {
+      transform: translateY(-8px);
+    }
+
+    /* Header */
+    .mockup-header {
+      text-align: center;
+      padding-bottom: 32px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .mockup-title {
+      font-size: 36px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .mockup-subtitle {
+      font-size: 16px;
+      color: #a0a0a0;
+      font-weight: 500;
+    }
+
+    /* Section Labels */
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #00FF88;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .section-hint {
+      font-size: 12px;
+      color: #707070;
+      margin-bottom: 16px;
+    }
+
+    /* Player Inputs */
+    .player-input-group {
+      margin-bottom: 32px;
+    }
+
+    .player-input {
+      display: flex;
+      align-items: center;
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .player-input:hover {
+      border-color: #3a3a3a;
+    }
+
+    .player-color-indicator {
+      width: 4px;
+      height: 32px;
+      border-radius: 2px;
+      margin-right: 12px;
+    }
+
+    .player-input input {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      outline: none;
+      flex: 1;
+    }
+
+    .player-input input::placeholder {
+      color: #707070;
+    }
+
+    /* Deck Cards */
+    .deck-card {
+      background: #141414;
+      border: 2px solid #2a2a2a;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .deck-card:hover {
+      border-color: #3a3a3a;
+      transform: translateY(-2px);
+    }
+
+    .deck-card.selected {
+      border-color: #00FF88;
+      background: rgba(0, 255, 136, 0.05);
+      box-shadow: 0 0 24px rgba(0, 255, 136, 0.15);
+    }
+
+    .deck-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .deck-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .selected-badge {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #00FF88;
+      box-shadow: 0 0 12px rgba(0, 255, 136, 0.5);
+    }
+
+    .deck-description {
+      font-size: 14px;
+      color: #a0a0a0;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .deck-meta {
+      font-size: 12px;
+      color: #707070;
+    }
+
+    /* Skins Input */
+    .skins-input-wrapper {
+      display: flex;
+      align-items: center;
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 32px;
+    }
+
+    .dollar-sign {
+      font-size: 24px;
+      font-weight: 700;
+      color: #00FF88;
+      margin-right: 8px;
+    }
+
+    .skins-input {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      font-weight: 600;
+      outline: none;
+      flex: 1;
+    }
+
+    .skins-input::placeholder {
+      color: #707070;
+    }
+
+    /* Buttons */
+    .primary-button {
+      background: linear-gradient(135deg, #00FF88 0%, #00CC6A 100%);
+      border: none;
+      border-radius: 16px;
+      padding: 16px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: 700;
+      color: #000;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      margin-bottom: 16px;
+      transition: all 0.2s ease;
+      box-shadow: 0 8px 24px rgba(0, 255, 136, 0.3);
+    }
+
+    .primary-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0, 255, 136, 0.4);
+    }
+
+    .secondary-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .secondary-button {
+      flex: 1;
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #a0a0a0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .secondary-button:hover {
+      border-color: #3a3a3a;
+      color: #fff;
+    }
+
+    /* Round Screen Components */
+    .round-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      background: #0a0a0a;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      border: 1px solid #1a1a1a;
+    }
+
+    .hole-info {
+      font-size: 20px;
+      font-weight: 700;
+      color: #00D9FF;
+      letter-spacing: -0.5px;
+    }
+
+    .skins-pot {
+      font-size: 16px;
+      font-weight: 600;
+      color: #FFB020;
+    }
+
+    .player-row {
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .player-name {
+      flex: 1;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .chip-badge {
+      background: #FF3B5C;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .score-controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .score-btn {
+      width: 44px;
+      height: 44px;
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .score-btn:hover {
+      border-color: #00FF88;
+      background: rgba(0, 255, 136, 0.1);
+    }
+
+    .score-display {
+      font-size: 32px;
+      font-weight: 700;
+      color: #00FF88;
+      min-width: 50px;
+      text-align: center;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .stat-card {
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 800;
+      color: #00FF88;
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #a0a0a0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Feature Cards */
+    .features-section {
+      margin: 120px 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .feature-card {
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      border-color: #2a2a2a;
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .feature-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #00FF88;
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      color: #a0a0a0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="text-align: center;">
+      <div class="premium-badge">Premium Design</div>
+      <h1>Birdies & Bourbon</h1>
+      <p class="subtitle">Professional UI Storyboard — Refined & Polished</p>
+    </div>
+
+    <!-- Screen 1: Premium Setup -->
+    <div class="screen-section">
+      <div class="screen-header">
+        <div class="screen-title">Setup Screen — Premium</div>
+        <p class="screen-description">
+          Refined design with subtle depth, refined spacing, and polished interaction states.
+          Premium color palette with teal-green accent and sophisticated glass morphism.
+        </p>
+      </div>
+
+      <div class="mockup-wrapper">
+        <div class="mockup">
+          <div class="mockup-header">
+            <div class="mockup-title">Birdies & Bourbon</div>
+            <div class="mockup-subtitle">Disc Golf Companion</div>
+          </div>
+
+          <!-- Players Section -->
+          <div class="player-input-group">
+            <div class="section-label">PLAYERS</div>
+            <div class="section-hint">2-6 players required</div>
+
+            <div class="player-input">
+              <div class="player-color-indicator" style="background: #00FF88;"></div>
+              <input type="text" placeholder="Player 1 *" value="Charlie">
+            </div>
+
+            <div class="player-input">
+              <div class="player-color-indicator" style="background: #00D9FF;"></div>
+              <input type="text" placeholder="Player 2 *" value="Alex">
+            </div>
+
+            <div class="player-input">
+              <div class="player-color-indicator" style="background: #FF3B5C;"></div>
+              <input type="text" placeholder="Player 3">
+            </div>
+
+            <div class="player-input">
+              <div class="player-color-indicator" style="background: #FFB020;"></div>
+              <input type="text" placeholder="Player 4">
+            </div>
+          </div>
+
+          <!-- Deck Selection -->
+          <div style="margin-bottom: 32px;">
+            <div class="section-label">GAME DECK</div>
+            <div class="section-hint">Choose your play style</div>
+
+            <div class="deck-card selected">
+              <div class="deck-header">
+                <div class="deck-name">Retribution Deck</div>
+                <div class="selected-badge"></div>
+              </div>
+              <div class="deck-description">
+                Earn chips for excellence, pay for disasters. Classic high-stakes format.
+              </div>
+              <div class="deck-meta">5 chips · 8 cards</div>
+            </div>
+
+            <div class="deck-card">
+              <div class="deck-header">
+                <div class="deck-name">Redemption Deck</div>
+              </div>
+              <div class="deck-description">
+                Forgiveness-focused with fewer penalties. Perfect for casual rounds.
+              </div>
+              <div class="deck-meta">5 chips · 6 cards</div>
+            </div>
+          </div>
+
+          <!-- Skins Value -->
+          <div style="margin-bottom: 32px;">
+            <div class="section-label">SKINS VALUE</div>
+            <div class="section-hint">Price per skin in dollars</div>
+
+            <div class="skins-input-wrapper">
+              <div class="dollar-sign">$</div>
+              <input type="text" class="skins-input" placeholder="5.00" value="5">
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <button class="primary-button">Start Round</button>
+
+          <div class="secondary-actions">
+            <button class="secondary-button">🎨 Custom Game</button>
+            <button class="secondary-button">🥃 Passport</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 2: Active Round (Premium) -->
+    <div class="screen-section">
+      <div class="screen-header">
+        <div class="screen-title">Active Round — Premium</div>
+        <p class="screen-description">
+          Refined scoring interface with improved visual hierarchy and polished interaction states.
+          Subtle shadows and glows add depth without overwhelming.
+        </p>
+      </div>
+
+      <div class="mockup-wrapper">
+        <div class="mockup">
+          <div class="round-header">
+            <div class="hole-info">HOLE 5 · PAR 3</div>
+            <div class="skins-pot">POT: $15</div>
+          </div>
+
+          <div class="player-row">
+            <div class="player-name">Charlie</div>
+            <div class="chip-badge">🔥 ACE</div>
+            <div class="score-controls">
+              <div class="score-btn">−</div>
+              <div class="score-display">2</div>
+              <div class="score-btn">+</div>
+            </div>
+          </div>
+
+          <div class="player-row">
+            <div class="player-name">Alex</div>
+            <div class="score-controls">
+              <div class="score-btn">−</div>
+              <div class="score-display">3</div>
+              <div class="score-btn">+</div>
+            </div>
+          </div>
+
+          <div class="player-row">
+            <div class="player-name">Jordan</div>
+            <div class="score-controls">
+              <div class="score-btn">−</div>
+              <div class="score-display">4</div>
+              <div class="score-btn">+</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px; display: flex; gap: 12px;">
+            <button class="secondary-button" style="flex: 0 0 auto; width: 80px;">← Back</button>
+            <button class="secondary-button" style="flex: 1;">🎴 Cards</button>
+            <button class="primary-button" style="flex: 0 0 auto; width: 100px; margin: 0;">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 3: Settlement (Premium) -->
+    <div class="screen-section">
+      <div class="screen-header">
+        <div class="screen-title">Settlement — Premium</div>
+        <p class="screen-description">
+          Final standings with clear visual hierarchy. Stats cards emphasize key metrics,
+          payout rows use color to indicate positive/negative amounts.
+        </p>
+      </div>
+
+      <div class="mockup-wrapper">
+        <div class="mockup">
+          <div class="mockup-header">
+            <div class="mockup-title">Round Complete</div>
+            <div class="mockup-subtitle">Final Standings</div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value">18</div>
+              <div class="stat-label">Holes</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">6</div>
+              <div class="stat-label">Skins</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">$30</div>
+              <div class="stat-label">Total</div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 32px;">
+            <div class="section-label">PAYOUTS</div>
+
+            <div class="player-row">
+              <div class="player-name">Charlie</div>
+              <div style="font-size: 20px; font-weight: 700; color: #00FF88;">+$20</div>
+            </div>
+
+            <div class="player-row">
+              <div class="player-name">Alex</div>
+              <div style="font-size: 20px; font-weight: 700; color: #00FF88;">+$5</div>
+            </div>
+
+            <div class="player-row">
+              <div class="player-name">Jordan</div>
+              <div style="font-size: 20px; font-weight: 700; color: #FF3B5C;">−$25</div>
+            </div>
+          </div>
+
+          <button class="primary-button">New Round</button>
+          <button class="secondary-button" style="width: 100%;">💸 Send Venmo Requests</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-section">
+      <h2 style="font-size: 40px; font-weight: 700; text-align: center; margin-bottom: 16px;">Premium Features</h2>
+      <p style="text-align: center; color: #a0a0a0; max-width: 600px; margin: 0 auto 60px;">
+        Refined design system with professional polish, subtle depth, and sophisticated interactions.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <div class="feature-title">Refined Color Palette</div>
+          <div class="feature-desc">
+            Premium teal-green accent replaces harsh neon. Sophisticated grays create subtle depth without overwhelming.
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <div class="feature-title">Glass Morphism</div>
+          <div class="feature-desc">
+            Subtle glassmorphic effects on elevated surfaces. Refined borders and shadows create depth hierarchy.
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <div class="feature-title">Improved Typography</div>
+          <div class="feature-desc">
+            Refined type scale with proper letter-spacing and weights. Clear hierarchy from display to caption.
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💎</div>
+          <div class="feature-title">Polished Interactions</div>
+          <div class="feature-desc">
+            Smooth transitions and hover states. Subtle glows on primary actions, refined focus states throughout.
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📐</div>
+          <div class="feature-title">Consistent Spacing</div>
+          <div class="feature-desc">
+            Refined 4dp spacing scale with proper rhythm. Generous padding creates breathing room without waste.
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🌙</div>
+          <div class="feature-title">OLED Optimized</div>
+          <div class="feature-desc">
+            Still true black (#000) for battery savings, but elevated surfaces use subtle grays for depth without breaking OLED benefits.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

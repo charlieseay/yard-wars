@@ -7,23 +7,28 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, StatusBar } from 'react-native';
 import { RoundRepository } from './src/storage/RoundRepository';
 import { RoundCoordinator, AppScreenState } from './src/state/RoundCoordinator';
-import { SetupScreen } from './src/ui/screens/SetupScreen';
-import { ActiveRoundScreen } from './src/ui/screens/ActiveRoundScreen';
-import { SettlementScreen } from './src/ui/screens/SettlementScreen';
-import { CustomGameScreen } from './src/ui/screens/CustomGameScreen';
+import { SetupScreenPremium as SetupScreen } from './src/ui/screens/SetupScreenPremium';
+import { ActiveRoundScreenPremium as ActiveRoundScreen } from './src/ui/screens/ActiveRoundScreenPremium';
+import { SettlementScreenPremium as SettlementScreen } from './src/ui/screens/SettlementScreenPremium';
+import { CustomGameScreenPremium as CustomGameScreen } from './src/ui/screens/CustomGameScreenPremium';
+import { BourbonPassportScreen } from './src/ui/screens/BourbonPassportScreen';
 import { theme } from './src/ui/theme';
 import { RoundState, GameDeck } from './src/types/game';
-import { RoundRepository } from './src/storage/RoundRepository';
+import { autoHealthCheck } from './src/utils/deviceHealth';
 
 const coordinator = new RoundCoordinator();
 
 export default function App() {
   const [isInitialized, setIsInitialized] = useState(false);
   const [screenState, setScreenState] = useState<AppScreenState>(coordinator.getState());
+  const [showBourbonPassport, setShowBourbonPassport] = useState(false);
 
   useEffect(() => {
     // Initialize storage and load any active round
     async function init() {
+      // Run health check first
+      await autoHealthCheck();
+
       await RoundRepository.initialize();
 
       // Check for crash recovery
@@ -61,7 +66,9 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={theme.colors.background} />
 
-      {screenState.screen === 'setup' && (
+      {showBourbonPassport ? (
+        <BourbonPassportScreen onBack={() => setShowBourbonPassport(false)} />
+      ) : screenState.screen === 'setup' ? (
         <SetupScreen
           onStartRound={async (roundState: RoundState) => {
             await coordinator.handleEvent({
@@ -72,8 +79,9 @@ export default function App() {
           onCustomGame={() => {
             setScreenState({ screen: 'customDeck' });
           }}
+          onHistory={() => setShowBourbonPassport(true)}
         />
-      )}
+      ) : null}
 
       {screenState.screen === 'activeRound' && (
         <ActiveRoundScreen

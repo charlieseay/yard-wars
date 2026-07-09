@@ -113,7 +113,7 @@ You should see:
 
 ### Core Flow
 - [ ] Setup screen: Enter 2-4 players
-- [ ] Setup screen: Select game deck (Retribution/Duel)
+- [ ] Setup screen: Select game deck (Retribution/Redemption/Loaded)
 - [ ] Setup screen: Set skins value
 - [ ] Active round: Score updates work (+/- buttons)
 - [ ] Active round: Hole navigation (next/back)
@@ -123,6 +123,33 @@ You should see:
 - [ ] Settlement: Final standings correct
 - [ ] Settlement: Payout matrix calculated
 - [ ] New round button returns to setup
+
+### Custom Game Builder
+- [ ] Open custom game builder from setup screen
+- [ ] Create new deck with name and description
+- [ ] Add chips with different weights
+- [ ] Add cards with timing windows and modifiers
+- [ ] Save custom deck
+- [ ] Custom deck appears in setup screen deck selector
+- [ ] Use custom deck in a round
+
+### Bourbon Passport
+- [ ] Open passport from setup screen
+- [ ] View career stats (rounds, holes, earnings)
+- [ ] Recent rounds list shows completed rounds
+- [ ] Round details show course name, date, player count
+- [ ] Distillery passport section (empty state)
+- [ ] Expeditions section (coming soon state)
+- [ ] Back button returns to setup
+
+### Card Modifiers
+- [ ] Open card panel during round
+- [ ] Draw card from deck
+- [ ] Select target player
+- [ ] Card applies to player (stroke added/removed)
+- [ ] Card shows as active modifier
+- [ ] Card expires after timing window
+- [ ] Cards reset between holes (if "currentHole" timing)
 
 ### OLED Optimization
 - [ ] True black background (#000000)
@@ -138,13 +165,15 @@ You should see:
 
 ---
 
-## Known Issues
+## Known Issues / Not Yet Implemented
 
 - **Venmo links**: Placeholder only - needs Venmo username integration
 - **Course data**: Using default 18-hole par-3 course
-- **QR Sync**: Not yet implemented
-- **Custom games**: Workshop not yet built
-- **Bourbon passport**: Not yet implemented
+- **QR Sync**: Needs compression library (pako or lz-string) - minification pipeline is built
+- **Custom games**: ✅ Workshop built, ready to test
+- **Bourbon passport**: ✅ Career stats screen built - needs location permission for distillery check-ins
+- **Regional packs**: Kentucky Bourbon Trail data embedded, needs geofencing integration
+- **Expeditions**: UI placeholder only, needs multi-round tracking logic
 
 ---
 

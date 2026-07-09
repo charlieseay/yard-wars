@@ -1,21 +1,31 @@
 /**
- * Typography scale optimized for outdoor readability
- * Large sizes for fat-finger targets and sunlight visibility
+ * Premium typography scale
+ * Clean, modern hierarchy with refined weights
  */
 
 export const typography = {
-  // Massive score counters
-  scoreDisplay: {
-    fontSize: 72,
-    fontWeight: '700' as const,
-    lineHeight: 80,
+  // Hero display (titles, branding)
+  display: {
+    fontSize: 48,
+    fontWeight: '800' as const,
+    lineHeight: 56,
+    letterSpacing: -1,
   },
 
-  // Large headings for hole info
+  // Massive score counters
+  scoreDisplay: {
+    fontSize: 64,
+    fontWeight: '700' as const,
+    lineHeight: 72,
+    letterSpacing: -0.5,
+  },
+
+  // Large headings
   heading1: {
     fontSize: 32,
-    fontWeight: '600' as const,
+    fontWeight: '700' as const,
     lineHeight: 40,
+    letterSpacing: -0.5,
   },
 
   heading2: {
@@ -24,25 +34,59 @@ export const typography = {
     lineHeight: 32,
   },
 
-  // Player names and labels
-  body: {
+  heading3: {
+    fontSize: 20,
+    fontWeight: '600' as const,
+    lineHeight: 28,
+  },
+
+  // Body text
+  bodyLarge: {
     fontSize: 18,
     fontWeight: '500' as const,
+    lineHeight: 26,
+  },
+
+  body: {
+    fontSize: 16,
+    fontWeight: '400' as const,
     lineHeight: 24,
   },
 
-  // Chip badges and secondary info
-  caption: {
+  bodySmall: {
     fontSize: 14,
+    fontWeight: '400' as const,
+    lineHeight: 20,
+  },
+
+  // Labels and captions
+  label: {
+    fontSize: 14,
+    fontWeight: '600' as const,
+    lineHeight: 20,
+    textTransform: 'uppercase' as const,
+    letterSpacing: 0.5,
+  },
+
+  caption: {
+    fontSize: 12,
     fontWeight: '500' as const,
-    lineHeight: 18,
+    lineHeight: 16,
   },
 
   // Button text
   button: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: '600' as const,
     lineHeight: 24,
+    letterSpacing: 0.5,
+  },
+
+  buttonLarge: {
+    fontSize: 18,
+    fontWeight: '700' as const,
+    lineHeight: 28,
+    letterSpacing: 0.5,
   },
 } as const;
 
