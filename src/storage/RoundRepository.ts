@@ -6,6 +6,7 @@
 
 import { Paths, Directory, File } from 'expo-file-system';
 import { RoundState, Expedition, GameDeck } from '../types/game';
+import * as iCloudBackup from './iCloudBackup';
 
 /**
  * Schema version for migration support
@@ -50,6 +51,7 @@ export class RoundRepository {
   /**
    * Atomic write: save round to backup file first, then swap
    * Prevents corruption if phone dies mid-write
+   * Automatically backs up to iCloud if enabled
    */
   static async saveRound(round: RoundState): Promise<void> {
     const file = new File(this.roundsDir, `${round.roundId}.json`);
@@ -70,6 +72,11 @@ export class RoundRepository {
 
       // Step 2: Move backup to main file (atomic operation)
       await backupFile.move(file, { overwrite: true });
+
+      // Step 3: Backup to iCloud if enabled (non-blocking)
+      iCloudBackup.backupFile(file.uri).catch(err => {
+        console.warn('iCloud backup failed (non-fatal):', err);
+      });
     } catch (error) {
       console.error('Failed to save round:', error);
       throw error;

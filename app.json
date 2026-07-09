@@ -8,7 +8,20 @@
     "userInterfaceStyle": "dark",
     "backgroundColor": "#000000",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.seayniclabs.yardwars",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "entitlements": {
+        "com.apple.developer.icloud-container-identifiers": [
+          "iCloud.com.seayniclabs.yardwars"
+        ],
+        "com.apple.developer.ubiquity-container-identifiers": [
+          "iCloud.com.seayniclabs.yardwars"
+        ],
+        "com.apple.developer.icloud-services": ["CloudDocuments"]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -18,6 +31,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "863ef0f2-cae6-44e8-81e6-fb3cc9e7d7db"
+      }
+    },
+    "owner": "seaynic-labs"
   }
 }

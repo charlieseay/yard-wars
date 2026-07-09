@@ -12,8 +12,11 @@ import {
   Chip,
   PlayerLedger,
   PayoutTransaction,
+  AceEvent,
+  AcePotWinner,
 } from '../types/game';
 import { RoundRepository } from '../storage/RoundRepository';
+import * as AcePotRepository from '../storage/acePotRepository';
 
 export type AppScreenState =
   | { screen: 'setup' }
@@ -151,11 +154,26 @@ export class RoundCoordinator {
       });
     });
 
+    // Add ace pot contribution if enabled
+    let acePotSnapshot = 0;
+    if (roundState.config.acePotEnabled && roundState.config.acePotContribution > 0) {
+      const contributionAmount = roundState.config.acePotContribution * playerIds.length;
+      const updatedPot = await AcePotRepository.addContribution(
+        roundState.roundId,
+        contributionAmount
+      );
+      acePotSnapshot = updatedPot.totalValue;
+    } else {
+      // Still snapshot current value even if not contributing this round
+      acePotSnapshot = await AcePotRepository.getAcePotValue();
+    }
+
     const initializedRound: RoundState = {
       ...roundState,
       holes,
       currentHoleIndex: 0,
       createdAt: Date.now(),
+      acePotSnapshot,
     };
 
     await RoundRepository.saveRound(initializedRound);
@@ -186,6 +204,39 @@ export class RoundCoordinator {
   ): Promise<void> {
     const currentHole = roundState.holes[roundState.currentHoleIndex];
     currentHole.playerScores[playerId] = score;
+
+    // Ace detection: score = 1 on par 3+
+    if (score === 1 && currentHole.par >= 3) {
+      const player = roundState.players[playerId];
+      const aceEvent: AceEvent = {
+        playerId,
+        playerName: player.name,
+        timestamp: Date.now(),
+        holeNumber: currentHole.holeNumber,
+        par: currentHole.par,
+      };
+      currentHole.aceScored = aceEvent;
+
+      // Award ace pot if enabled
+      if (roundState.config.acePotEnabled) {
+        const currentPotValue = await AcePotRepository.getAcePotValue();
+        if (currentPotValue > 0) {
+          const winner: AcePotWinner = {
+            playerId,
+            playerName: player.name,
+            roundId: roundState.roundId,
+            courseId: roundState.courseId,
+            courseName: roundState.courseName,
+            timestamp: Date.now(),
+            amount: currentPotValue,
+          };
+          await AcePotRepository.awardAcePot(winner);
+
+          // Update snapshot to show pot was won
+          roundState.acePotSnapshot = 0;
+        }
+      }
+    }
 
     await RoundRepository.saveRound(roundState);
     this.updateScreenState({ screen: 'activeRound', roundState });

@@ -7,7 +7,7 @@ export type TimingWindow = 'immediateShot' | 'currentHole' | 'endOfRound';
 export type TargetVector = 'single' | 'opponent' | 'all';
 export type EngineModification = 'forceRetake' | 'addStroke' | 'freezePayout';
 export type ChipType = 'positive' | 'negative';
-export type CurrencyType = 'dollars' | 'drinks' | 'points' | 'custom';
+export type CurrencyType = 'dollars' | 'drinks' | 'points' | 'pushups' | 'custom';
 
 /**
  * Card modifier that affects gameplay
@@ -37,6 +37,17 @@ export interface Chip {
 }
 
 /**
+ * Ace scored on a hole
+ */
+export interface AceEvent {
+  playerId: string;
+  playerName: string;
+  timestamp: number;
+  holeNumber: number;
+  par: number;
+}
+
+/**
  * Single hole state including scores, modifiers, and chips
  */
 export interface HoleState {
@@ -48,6 +59,7 @@ export interface HoleState {
   chipLocations: Record<string, string>; // chipId -> playerId
   pushedSkins: number; // Skins carried over from previous holes
   isResolved: boolean;
+  aceScored?: AceEvent; // Ace detection (score = 1 on par 3+)
 }
 
 /**
@@ -60,6 +72,39 @@ export interface Player {
 }
 
 /**
+ * Ace pot contribution history entry
+ */
+export interface AcePotContribution {
+  roundId: string;
+  amount: number;
+  timestamp: number;
+}
+
+/**
+ * Ace pot winner record
+ */
+export interface AcePotWinner {
+  playerId: string;
+  playerName: string;
+  roundId: string;
+  courseId: string;
+  courseName: string;
+  timestamp: number;
+  amount: number;
+}
+
+/**
+ * Persistent ace pot state (shared across rounds)
+ */
+export interface AcePot {
+  totalValue: number;
+  lastWinner?: AcePotWinner;
+  contributionHistory: AcePotContribution[];
+  createdAt: number;
+  updatedAt: number;
+}
+
+/**
  * Round configuration
  */
 export interface RoundConfig {
@@ -67,6 +112,8 @@ export interface RoundConfig {
   currencyType: CurrencyType;
   customCurrencyName?: string;
   gameDeckId: string; // Which game deck template is being used
+  acePotEnabled: boolean;
+  acePotContribution: number; // Per-round contribution when enabled
 }
 
 /**
@@ -84,6 +131,7 @@ export interface RoundState {
   createdAt: number; // Unix timestamp
   completedAt?: number; // Unix timestamp
   expeditionId?: string; // Optional link to multi-course trip
+  acePotSnapshot?: number; // Snapshot of ace pot value at round start (for contribution display)
 }
 
 /**
@@ -197,4 +245,30 @@ export interface SyncPayload {
   h: number; // currentHoleIndex
   s: number[][]; // scores matrix [holeIdx][playerIdx]
   k: number; // current skins pot
+}
+
+/**
+ * Cloud backup configuration
+ */
+export interface CloudBackupConfig {
+  enabled: boolean;
+  provider: 'icloud' | 'googledrive';
+  lastSyncTimestamp?: number;
+  autoSyncOnWifi: boolean;
+}
+
+/**
+ * Watch app state sync payload
+ */
+export interface WatchSyncPayload {
+  roundId: string;
+  currentHole: number;
+  totalHoles: number;
+  skinsPot: number;
+  acePot?: number;
+  playerScores: Array<{
+    playerId: string;
+    name: string;
+    totalScore: number;
+  }>;
 }
