@@ -6,6 +6,7 @@
 
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView, Alert, Modal } from 'react-native';
+import * as Haptics from 'expo-haptics';
 import { theme } from '../theme';
 import { RoundState, HoleState } from '../../types/game';
 import { GameType, isDiscGolfConfig } from '../../types/gameTypes';
@@ -64,6 +65,7 @@ export function ActiveRoundScreen({
   const skinsInPot = roundState.config.skinsValue * (1 + (currentHole.pushedSkins || 0));
 
   const handleChipPress = (chipId: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (selectedChipId === chipId) {
       // Deselect if tapping the same chip
       setSelectedChipId(null);
@@ -75,11 +77,17 @@ export function ActiveRoundScreen({
 
   const handlePlayerPress = (playerId: string) => {
     if (selectedChipId) {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       onAssignChip(selectedChipId, playerId);
       setSelectedChipId(null);
       // Show success feedback
       Alert.alert('Chip Assigned', `Chip assigned to ${roundState.players[playerId].name}`, [{ text: 'OK' }]);
     }
+  };
+
+  const handleScoreChange = (playerId: string, newScore: number) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    onUpdateScore(playerId, newScore);
   };
 
   const handlePlayCard = (cardTemplate: any) => {
@@ -295,7 +303,7 @@ export function ActiveRoundScreen({
               <View style={styles.scoreControls}>
                 <TouchableOpacity
                   style={styles.scoreButton}
-                  onPress={() => onUpdateScore(playerId, score - 1)}
+                  onPress={() => handleScoreChange(playerId, score - 1)}
                 >
                   <ScoreMinusIcon size={28} color={theme.colors.accentPenalties} />
                 </TouchableOpacity>
@@ -304,7 +312,7 @@ export function ActiveRoundScreen({
 
                 <TouchableOpacity
                   style={styles.scoreButton}
-                  onPress={() => onUpdateScore(playerId, score + 1)}
+                  onPress={() => handleScoreChange(playerId, score + 1)}
                 >
                   <ScorePlusIcon size={28} color={theme.colors.accentSkins} />
                 </TouchableOpacity>
@@ -384,22 +392,34 @@ const styles = StyleSheet.create({
   },
   playersContainer: {
     flex: 1,
+    paddingTop: theme.spacing.sm,
+    paddingBottom: theme.spacing.lg,
   },
   playerRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: theme.spacing.lg,
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.border,
+    marginHorizontal: theme.spacing.md,
+    marginVertical: theme.spacing.sm,
+    borderRadius: 12,
     borderLeftWidth: 4,
+    backgroundColor: '#0a0a0a',
     minHeight: theme.spacing.minTouchTarget + theme.spacing.lg,
+    // Subtle shadow for depth
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 3,
   },
   playerRowSelectable: {
-    backgroundColor: '#001111',
+    backgroundColor: '#001a1a',
     borderColor: theme.colors.neonCyan,
     borderWidth: 2,
-    borderRadius: 8,
+    borderLeftWidth: 4,
+    shadowColor: theme.colors.neonCyan,
+    shadowOpacity: 0.4,
   },
   playerInfo: {
     flex: 1,
@@ -408,6 +428,9 @@ const styles = StyleSheet.create({
     ...theme.typography.heading2,
     color: theme.colors.textPrimary,
     marginBottom: theme.spacing.xs,
+    fontSize: 20,
+    fontWeight: '700',
+    letterSpacing: 0.5,
   },
   playerDiff: {
     ...theme.typography.caption,
@@ -455,6 +478,8 @@ const styles = StyleSheet.create({
     color: theme.colors.textPrimary,
     minWidth: 80,
     textAlign: 'center',
+    fontSize: 36,
+    fontWeight: '800',
   },
   navigation: {
     flexDirection: 'row',
@@ -500,12 +525,17 @@ const styles = StyleSheet.create({
     marginTop: theme.spacing.xs,
   },
   headerIconButton: {
-    width: 40,
-    height: 40,
+    width: 44,
+    height: 44,
     borderRadius: 8,
     backgroundColor: theme.colors.neonCyan,
     alignItems: 'center',
     justifyContent: 'center',
+    shadowColor: theme.colors.neonCyan,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 3,
   },
   headerIconText: {
     fontSize: 20,
