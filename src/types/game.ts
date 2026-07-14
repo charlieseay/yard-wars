@@ -1,7 +1,9 @@
 /**
- * Core data models for Birdies and Bourbon
- * Following the architecture from NotebookLM spec
+ * Core data models for Yard Wars
+ * Multi-sport yard games tracker with card modifiers
  */
+
+import { GameType, GameSpecificConfig } from './gameTypes';
 
 export type TimingWindow = 'immediateShot' | 'currentHole' | 'endOfRound';
 export type TargetVector = 'single' | 'opponent' | 'all';
@@ -108,12 +110,16 @@ export interface AcePot {
  * Round configuration
  */
 export interface RoundConfig {
+  gameType: GameType; // What game is being played (disc golf, cornhole, etc.)
   skinsValue: number;
   currencyType: CurrencyType;
   customCurrencyName?: string;
-  gameDeckId: string; // Which game deck template is being used
-  acePotEnabled: boolean;
-  acePotContribution: number; // Per-round contribution when enabled
+  gameDeckId?: string; // Which game deck template (disc golf only)
+  gameSpecificConfig: GameSpecificConfig; // Game-specific rules/settings
+
+  // DEPRECATED: Remove after migration to gameSpecificConfig
+  acePotEnabled?: boolean;
+  acePotContribution?: number;
 }
 
 /**
