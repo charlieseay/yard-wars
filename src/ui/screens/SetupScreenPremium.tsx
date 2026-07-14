@@ -1,6 +1,7 @@
 /**
  * Premium Setup Screen
  * Polished, professional UI with refined design system
+ * Note: Updated to support game types (defaults to Disc Golf)
  */
 
 import React, { useState } from 'react';
@@ -15,16 +16,19 @@ import {
 } from 'react-native';
 import { theme } from '../theme';
 import { RoundState, Player } from '../../types/game';
+import { GameType, DEFAULT_CONFIGS } from '../../types/gameTypes';
 import { getDefaultDecks } from '../../state/defaultDecks';
 import { generateUUID } from '../../utils/uuid';
 
 interface SetupScreenPremiumProps {
+  gameType?: GameType;
   onStartRound: (roundState: RoundState) => void;
   onCustomGame?: () => void;
   onHistory?: () => void;
 }
 
 export function SetupScreenPremium({
+  gameType = GameType.DISC_GOLF,
   onStartRound,
   onCustomGame,
   onHistory,
@@ -34,6 +38,7 @@ export function SetupScreenPremium({
   const [skinsValue, setSkinsValue] = useState('5');
 
   const decks = getDefaultDecks();
+  const gameSpecificConfig = DEFAULT_CONFIGS[gameType];
 
   const handleStartRound = () => {
     const activePlayers = playerNames.filter((name) => name.trim() !== '');
@@ -58,9 +63,11 @@ export function SetupScreenPremium({
       courseName: 'Default Course',
       players,
       config: {
+        gameType,
         skinsValue: parseFloat(skinsValue) || 5,
         currencyType: 'dollars',
         gameDeckId: selectedDeckId,
+        gameSpecificConfig,
       },
       currentHoleIndex: 0,
       holes: [],

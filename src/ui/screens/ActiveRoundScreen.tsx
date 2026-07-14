@@ -1,6 +1,6 @@
 /**
  * Active Round Screen - Main scoring interface
- * Hole-by-hole scoring with chip assignment and modifiers
+ * Multi-sport scoring: Disc Golf, Cornhole, Horseshoes, Custom
  * OLED-optimized for outdoor play
  */
 
@@ -8,11 +8,13 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView, Alert } from 'react-native';
 import { theme } from '../theme';
 import { RoundState, HoleState } from '../../types/game';
+import { GameType, isDiscGolfConfig } from '../../types/gameTypes';
 import { ChipTray } from '../components/ChipTray';
 import { CardModifierPanel } from '../components/CardModifierPanel';
 import { QRSyncModal } from '../components/QRSyncModal';
 import { getDefaultDecks } from '../../state/defaultDecks';
 import { generateUUID } from '../../utils/uuid';
+import { ScorePlusIcon, ScoreMinusIcon } from '../icons';
 
 interface ActiveRoundScreenProps {
   roundState: RoundState;
@@ -117,16 +119,21 @@ export function ActiveRoundScreen({
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Card modifier panel */}
-      <CardModifierPanel
-        activeModifiers={currentHole.activeModifiers || []}
-        availableCards={availableCards}
-        onPlayCard={handlePlayCard}
-        onExpireModifier={onExpireModifier}
-      />
+      {/* Game-specific UI - Disc Golf only */}
+      {roundState.config.gameType === GameType.DISC_GOLF && (
+        <>
+          {/* Card modifier panel */}
+          <CardModifierPanel
+            activeModifiers={currentHole.activeModifiers || []}
+            availableCards={availableCards}
+            onPlayCard={handlePlayCard}
+            onExpireModifier={onExpireModifier}
+          />
 
-      {/* Chip tray */}
-      <ChipTray chips={availableChips} onChipPress={handleChipPress} />
+          {/* Chip tray */}
+          <ChipTray chips={availableChips} onChipPress={handleChipPress} />
+        </>
+      )}
 
       {/* Header - Hole info and skins pot */}
       <View style={styles.header}>
@@ -202,7 +209,7 @@ export function ActiveRoundScreen({
                   style={styles.scoreButton}
                   onPress={() => onUpdateScore(playerId, score - 1)}
                 >
-                  <Text style={styles.scoreButtonText}>−</Text>
+                  <ScoreMinusIcon size={28} color={theme.colors.accentPenalties} />
                 </TouchableOpacity>
 
                 <Text style={styles.scoreDisplay}>{score}</Text>
@@ -211,7 +218,7 @@ export function ActiveRoundScreen({
                   style={styles.scoreButton}
                   onPress={() => onUpdateScore(playerId, score + 1)}
                 >
-                  <Text style={styles.scoreButtonText}>+</Text>
+                  <ScorePlusIcon size={28} color={theme.colors.accentSkins} />
                 </TouchableOpacity>
               </View>
             </TouchableOpacity>

@@ -154,10 +154,13 @@ export class RoundCoordinator {
       });
     });
 
-    // Add ace pot contribution if enabled
+    // Add ace pot contribution if enabled (check both old and new config locations)
     let acePotSnapshot = 0;
-    if (roundState.config.acePotEnabled && roundState.config.acePotContribution > 0) {
-      const contributionAmount = roundState.config.acePotContribution * playerIds.length;
+    const acePotEnabled = roundState.config.acePotEnabled ?? false;
+    const acePotContribution = roundState.config.acePotContribution ?? 0;
+
+    if (acePotEnabled && acePotContribution > 0) {
+      const contributionAmount = acePotContribution * playerIds.length;
       const updatedPot = await AcePotRepository.addContribution(
         roundState.roundId,
         contributionAmount

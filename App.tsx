@@ -1,27 +1,31 @@
 /**
- * Birdies and Bourbon - Main App Entry
- * Offline-first disc golf companion for skins, chips, and bourbon passport
+ * Yard Wars - Multi-sport Yard Games Companion
+ * Disc Golf, Cornhole, Horseshoes, Custom Games
  */
 
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, StatusBar } from 'react-native';
 import { RoundRepository } from './src/storage/RoundRepository';
 import { RoundCoordinator, AppScreenState } from './src/state/RoundCoordinator';
-import { SetupScreenPremium as SetupScreen } from './src/ui/screens/SetupScreenPremium';
-import { ActiveRoundScreenPremium as ActiveRoundScreen } from './src/ui/screens/ActiveRoundScreenPremium';
-import { SettlementScreenPremium as SettlementScreen } from './src/ui/screens/SettlementScreenPremium';
-import { CustomGameScreenPremium as CustomGameScreen } from './src/ui/screens/CustomGameScreenPremium';
-import { BourbonPassportScreen } from './src/ui/screens/BourbonPassportScreen';
+import { GameTypeSelectScreen } from './src/ui/screens/GameTypeSelectScreen';
+import { SetupScreen } from './src/ui/screens/SetupScreen';
+import { ActiveRoundScreen } from './src/ui/screens/ActiveRoundScreen';
+import { SettlementScreen } from './src/ui/screens/SettlementScreen';
+import { CustomGameScreen } from './src/ui/screens/CustomGameScreen';
 import { theme } from './src/ui/theme';
 import { RoundState, GameDeck } from './src/types/game';
+import { GameType } from './src/types/gameTypes';
 import { autoHealthCheck } from './src/utils/deviceHealth';
 
 const coordinator = new RoundCoordinator();
 
+type AppScreen = AppScreenState | { screen: 'gameTypeSelect' } | { screen: 'setupWithGame'; gameType: GameType };
+
 export default function App() {
   const [isInitialized, setIsInitialized] = useState(false);
-  const [screenState, setScreenState] = useState<AppScreenState>(coordinator.getState());
-  const [showBourbonPassport, setShowBourbonPassport] = useState(false);
+  const [screenState, setScreenState] = useState<AppScreen>({ screen: 'gameTypeSelect' });
+  const [selectedGameType, setSelectedGameType] = useState<GameType | null>(null);
+  const coordinatorState = coordinator.getState();
 
   useEffect(() => {
     // Initialize storage and load any active round
@@ -38,6 +42,11 @@ export default function App() {
           type: 'RESUME_ROUND',
           roundState: activeRound,
         });
+        // If there's an active round, show it immediately
+        setScreenState(coordinatorState);
+      } else {
+        // Otherwise start with game type selection
+        setScreenState({ screen: 'gameTypeSelect' });
       }
 
       setIsInitialized(true);
@@ -45,8 +54,10 @@ export default function App() {
 
     init();
 
-    // Subscribe to state changes
-    const unsubscribe = coordinator.subscribe(setScreenState);
+    // Subscribe to coordinator state changes
+    const unsubscribe = coordinator.subscribe((newState) => {
+      setScreenState(newState);
+    });
 
     return () => {
       unsubscribe();
@@ -66,22 +77,27 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={theme.colors.background} />
 
-      {showBourbonPassport ? (
-        <BourbonPassportScreen onBack={() => setShowBourbonPassport(false)} />
-      ) : screenState.screen === 'setup' ? (
+      {screenState.screen === 'gameTypeSelect' && (
+        <GameTypeSelectScreen
+          onSelectGame={(gameType) => {
+            setSelectedGameType(gameType);
+            setScreenState({ screen: 'setupWithGame', gameType });
+          }}
+        />
+      )}
+
+      {screenState.screen === 'setupWithGame' && selectedGameType && (
         <SetupScreen
+          gameType={selectedGameType}
           onStartRound={async (roundState: RoundState) => {
             await coordinator.handleEvent({
               type: 'START_ROUND',
               roundState,
             });
           }}
-          onCustomGame={() => {
-            setScreenState({ screen: 'customDeck' });
-          }}
-          onHistory={() => setShowBourbonPassport(true)}
+          onBack={() => setScreenState({ screen: 'gameTypeSelect' })}
         />
-      ) : null}
+      )}
 
       {screenState.screen === 'activeRound' && (
         <ActiveRoundScreen
@@ -136,6 +152,7 @@ export default function App() {
           ledger={screenState.ledger}
           onExitToSetup={async () => {
             await coordinator.handleEvent({ type: 'EXIT_TO_SETUP' });
+            setScreenState({ screen: 'gameTypeSelect' });
           }}
         />
       )}
@@ -147,6 +164,7 @@ export default function App() {
           }}
           onBack={async () => {
             await coordinator.handleEvent({ type: 'EXIT_TO_SETUP' });
+            setScreenState({ screen: 'gameTypeSelect' });
           }}
         />
       )}

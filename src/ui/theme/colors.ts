@@ -67,6 +67,10 @@ export const colors = {
   neonCyan: '#00D9FF',
   neonYellow: '#FFB020',
   neonPurple: '#A78BFA',
+
+  // Skins and penalties (game-specific accents)
+  accentSkins: '#00FF88',      // Success/green for skins
+  accentPenalties: '#FF3B5C',  // Error/red for penalties
 } as const;
 
 export type Colors = typeof colors;

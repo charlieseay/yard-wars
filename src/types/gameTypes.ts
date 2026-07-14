@@ -26,15 +26,15 @@ export interface DiscGolfConfig {
 /**
  * Cornhole Configuration
  * Standard ACL/ACA tournament rules:
- * - 21 points to win
+ * - 21 points to win (or custom)
  * - Cancellation scoring (bags cancel between teams)
  * - Bag in hole = 3 pts, on board = 1 pt
  */
 export interface CornholeConfig {
-  pointsToWin: 21; // ACL standard
-  cancellationScoring: true; // Opponent bags cancel
-  bagInHoleValue: 3;
-  bagOnBoardValue: 1;
+  pointsToWin: number; // Tournament default 21
+  cancellationScoring: boolean; // Opponent bags cancel
+  bagInHoleValue: number;
+  bagOnBoardValue: number;
   inningsToTrack: boolean; // Track frames/innings
 }
 
@@ -46,10 +46,10 @@ export interface CornholeConfig {
  * - Closest shoe = 1 pt (if no ringers)
  */
 export interface HorseshoesConfig {
-  pointsToWin: 40; // NHPA standard
-  ringerValue: 3;
-  leanerValue: 1;
-  closestShoeValue: 1;
+  pointsToWin: number; // Tournament default 40
+  ringerValue: number;
+  leanerValue: number;
+  closestShoeValue: number;
   pitchLimit?: number; // Optional shoe count limit (e.g., 50 shoes)
 }
 

@@ -1,10 +1,10 @@
 /**
  * Ace Pot Repository - Persistent storage for ace pot state
  * Survives across rounds and syncs to iCloud/Google Drive
+ * Uses Expo SDK 57 FileSystem API
  */
 
-import * as FileSystem from 'expo-file-system';
-import { Paths } from 'expo-file-system/next';
+import { Paths, File } from 'expo-file-system';
 import { AcePot, AcePotContribution, AcePotWinner } from '../types/game';
 
 const ACE_POT_FILE = 'ace-pot.json';
@@ -20,10 +20,10 @@ const DEFAULT_ACE_POT: AcePot = {
 };
 
 /**
- * Get the full path to the ace pot file
+ * Get the ace pot file handle
  */
-function getAcePotPath(): string {
-  return `${Paths.document}/${ACE_POT_FILE}`;
+function getAcePotFile(): File {
+  return new File(Paths.document, ACE_POT_FILE);
 }
 
 /**
@@ -32,14 +32,14 @@ function getAcePotPath(): string {
  */
 export async function loadAcePot(): Promise<AcePot> {
   try {
-    const path = getAcePotPath();
-    const info = await FileSystem.getInfoAsync(path);
+    const file = getAcePotFile();
 
-    if (!info.exists) {
+    // Check if file exists (property, not method)
+    if (!file.exists) {
       return DEFAULT_ACE_POT;
     }
 
-    const content = await FileSystem.readAsStringAsync(path);
+    const content = await file.text();
     const acePot: AcePot = JSON.parse(content);
     return acePot;
   } catch (error) {
@@ -53,18 +53,17 @@ export async function loadAcePot(): Promise<AcePot> {
  */
 export async function saveAcePot(acePot: AcePot): Promise<void> {
   try {
-    const path = getAcePotPath();
-    const backupPath = `${path}.bak`;
+    const file = getAcePotFile();
+    const backupFile = new File(Paths.document, `${ACE_POT_FILE}.bak`);
 
     // Write to backup first
-    await FileSystem.writeAsStringAsync(
-      backupPath,
+    await backupFile.create({ overwrite: true });
+    await backupFile.write(
       JSON.stringify({ ...acePot, updatedAt: Date.now() }, null, 2)
     );
 
-    // Swap backup to main file
-    await FileSystem.deleteAsync(path, { idempotent: true });
-    await FileSystem.moveAsync({ from: backupPath, to: path });
+    // Swap backup to main file (atomic operation)
+    await backupFile.move(file, { overwrite: true });
   } catch (error) {
     console.error('[AcePotRepository] Failed to save ace pot:', error);
     throw error;
