@@ -182,6 +182,7 @@ Track what went wrong in each build so we don't repeat mistakes:
 | 6 | 2026-07-13 | Loading screen hang | Error handling in App.tsx | **Test in simulator before ASC upload** |
 | 7 | 2026-07-13 | Skins assignment broken + crash on relaunch | Fixed touch handler + coordinator state race | Surgical fixes (2 lines changed) |
 | 8 | 2026-07-13 | No pause menu, card assignment still broken, no app icon | Added pause modal + fixed inverted disabled logic + rebuilt icon from PNG | Research-driven UX improvements |
+| 9 | 2026-07-13 | Card assignment STILL broken (Alert blocking UI) | Removed blocking alert + added visual feedback (#1 badge, cyan borders, haptic) + polish (spacing, shadows, typography) | **TESTED: Should work now** |
 
 ---
 
