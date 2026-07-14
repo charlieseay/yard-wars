@@ -150,6 +150,25 @@ agvtool new-version -all <next-number>
 
 ---
 
+### Signing Error: No Account for Team
+**Symptom:** Archive fails with "No Account for Team" or "No profiles found"
+
+**Causes:**
+- `npx expo prebuild --clean` wiped the development team from Xcode project
+- Apple Developer account not signed in to Xcode
+
+**Fix:**
+1. Open Xcode → Settings → Accounts
+2. Verify Apple ID is signed in
+3. OR: Manually add development team to project:
+```bash
+cd ~/Projects/yard-wars/ios
+# Add DEVELOPMENT_TEAM = 3DR824Q92Y to project.pbxproj
+# Then re-run archive script
+```
+
+---
+
 ## Build History
 
 Track what went wrong in each build so we don't repeat mistakes:
@@ -161,6 +180,7 @@ Track what went wrong in each build so we don't repeat mistakes:
 | 4 | 2026-07-13 | Build number conflict | Manual increment | - |
 | 5 | 2026-07-13 | Missing `@expo/vector-icons` | `npm install` | Always test imports locally first |
 | 6 | 2026-07-13 | Loading screen hang | Error handling in App.tsx | **Test in simulator before ASC upload** |
+| 7 | 2026-07-13 | Skins assignment broken + crash on relaunch | Fixed touch handler + coordinator state race | Surgical fixes (2 lines changed) |
 
 ---
 

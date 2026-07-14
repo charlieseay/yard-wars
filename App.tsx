@@ -51,14 +51,24 @@ export default function App() {
             type: 'RESUME_ROUND',
             roundState: activeRound,
           });
-          // If there's an active round, show it immediately
-          setScreenState(coordinatorState);
+          // Get the updated state AFTER the coordinator processed the event
+          const resumedState = coordinator.getState();
+          setScreenState(resumedState);
         } else {
           // Otherwise start with game type selection
           setScreenState({ screen: 'gameTypeSelect' });
         }
       } catch (error) {
         console.error('Failed to load active round:', error);
+        // Clear any corrupted active round and start fresh
+        try {
+          const activeRound = await RoundRepository.loadActiveRound();
+          if (activeRound) {
+            await RoundRepository.deleteRound(activeRound.roundId);
+          }
+        } catch (cleanupError) {
+          console.warn('Failed to clean up corrupted round:', cleanupError);
+        }
         // Fallback to game type selection
         setScreenState({ screen: 'gameTypeSelect' });
       }

@@ -178,7 +178,8 @@ export function ActiveRoundScreen({
                 selectedChipId && styles.playerRowSelectable,
               ]}
               onPress={() => handlePlayerPress(playerId)}
-              activeOpacity={selectedChipId ? 0.7 : 1}
+              disabled={!selectedChipId}
+              activeOpacity={0.7}
             >
               <View style={styles.playerInfo}>
                 <Text style={styles.playerName}>{player.name}</Text>
