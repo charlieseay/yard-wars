@@ -30,22 +30,36 @@ export default function App() {
   useEffect(() => {
     // Initialize storage and load any active round
     async function init() {
-      // Run health check first
-      await autoHealthCheck();
+      try {
+        // Run health check first
+        await autoHealthCheck();
+      } catch (error) {
+        console.warn('Health check failed:', error);
+      }
 
-      await RoundRepository.initialize();
+      try {
+        await RoundRepository.initialize();
+      } catch (error) {
+        console.error('RoundRepository init failed:', error);
+      }
 
       // Check for crash recovery
-      const activeRound = await RoundRepository.loadActiveRound();
-      if (activeRound) {
-        await coordinator.handleEvent({
-          type: 'RESUME_ROUND',
-          roundState: activeRound,
-        });
-        // If there's an active round, show it immediately
-        setScreenState(coordinatorState);
-      } else {
-        // Otherwise start with game type selection
+      try {
+        const activeRound = await RoundRepository.loadActiveRound();
+        if (activeRound) {
+          await coordinator.handleEvent({
+            type: 'RESUME_ROUND',
+            roundState: activeRound,
+          });
+          // If there's an active round, show it immediately
+          setScreenState(coordinatorState);
+        } else {
+          // Otherwise start with game type selection
+          setScreenState({ screen: 'gameTypeSelect' });
+        }
+      } catch (error) {
+        console.error('Failed to load active round:', error);
+        // Fallback to game type selection
         setScreenState({ screen: 'gameTypeSelect' });
       }
 

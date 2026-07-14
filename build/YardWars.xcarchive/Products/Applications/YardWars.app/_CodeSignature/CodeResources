@@ -42,7 +42,7 @@
 		</data>
 		<key>Frameworks/ExpoFileSystem.framework/ExpoFileSystem</key>
 		<data>
-		0lmigSTjiJrZI/O61dm19SYBnCg=
+		I+8ulXoCzeg1QJD9qEjvOLpP9eA=
 		</data>
 		<key>Frameworks/ExpoFileSystem.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/ExpoFont.framework/ExpoFont</key>
 		<data>
-		ollyvn112t8CCm8MVihig390HaA=
+		FZ2f30nW1HkeKzTPjH4/BONqriQ=
 		</data>
 		<key>Frameworks/ExpoFont.framework/Info.plist</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Frameworks/ExpoModulesCore.framework/ExpoModulesCore</key>
 		<data>
-		6e7n8QiMsqKnQjveDiy908RDvVc=
+		1XGz28mJ7XLZ5H9jvmzJkCKK4AQ=
 		</data>
 		<key>Frameworks/ExpoModulesCore.framework/Info.plist</key>
 		<data>
@@ -78,7 +78,7 @@
 		</data>
 		<key>Frameworks/ExpoModulesJSI.framework/ExpoModulesJSI</key>
 		<data>
-		TuFsAeBztt3n0apVBtFSPzuZ+B8=
+		2pX+tqkPKAug9lkAe/IIxspjVf8=
 		</data>
 		<key>Frameworks/ExpoModulesJSI.framework/Info.plist</key>
 		<data>
@@ -90,7 +90,7 @@
 		</data>
 		<key>Frameworks/ExpoModulesWorklets.framework/ExpoModulesWorklets</key>
 		<data>
-		q/24hVkS/bt8lUyImFmfkmp48wY=
+		IrGoSRe80kzDdRKtGQSMSIPcinc=
 		</data>
 		<key>Frameworks/ExpoModulesWorklets.framework/Info.plist</key>
 		<data>
@@ -106,7 +106,7 @@
 		</data>
 		<key>Frameworks/React.framework/React</key>
 		<data>
-		sMvR4uJXBQFQrKja0+ZFKDVQDVE=
+		CUQKJq7lxO5LJ9DNN80xiQ5M+l0=
 		</data>
 		<key>Frameworks/React.framework/_CodeSignature/CodeResources</key>
 		<data>
@@ -118,7 +118,7 @@
 		</data>
 		<key>Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies</key>
 		<data>
-		QUHNrXvruUrZiOHqJRjerg7YcxM=
+		XrCJLuXlujBqyJ5xDVxKtxGSaEY=
 		</data>
 		<key>Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies_boost.bundle/Info.plist</key>
 		<data>
@@ -158,11 +158,11 @@
 		</data>
 		<key>Frameworks/hermesvm.framework/hermesvm</key>
 		<data>
-		EEiX6MOcDPDLZiuZEePzmUDhLCQ=
+		dckBUAaWh0GkZGiwe/3ezK5uB4E=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		5aJLOBeqrqDlhnUJ6xvg8jN3dM0=
+		dw1ul5xhsg7exE4N+xqETgazvK4=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -220,13 +220,89 @@
 		<data>
 		XO9GpHETPa/KEeOkIqhZoQ6OIvU=
 		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/AntDesign.ttf</key>
+		<data>
+		N9eaBsditymNcUBjgCrUXmXjmHo=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Entypo.ttf</key>
+		<data>
+		ErVnDrF4E493KF1fLCRtPMX6Z9Y=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/EvilIcons.ttf</key>
+		<data>
+		kdN36jz0dJCyVsLtCBcEp9q9rgw=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Feather.ttf</key>
+		<data>
+		pspFwzapNXdo6sYUkTQWAD5wvxI=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome.ttf</key>
+		<data>
+		E7HqtlqYPHpzvHmXxHnWaUP3xss=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf</key>
+		<data>
+		P6LWfO8i2lw/PrVzDGr71v7PA3I=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf</key>
+		<data>
+		fYSaOYGnFuK6SoRjS8V9C4BUpqM=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf</key>
+		<data>
+		wbn64mL0KGjAdayGWoqzSSDiCiw=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome6_Brands.ttf</key>
+		<data>
+		fOiccdWlGsZbFZxxQieD3YZSnGY=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome6_Regular.ttf</key>
+		<data>
+		d14uz8GNIrF3J0RT1MAUymvmMgg=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome6_Solid.ttf</key>
+		<data>
+		K44ROJ2YEiOZZnz2SUHrWEl9wSg=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Fontisto.ttf</key>
+		<data>
+		wJCj7Jaj8bubYVwvPyBM4Nzc28M=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Foundation.ttf</key>
+		<data>
+		SyvObHkkk6SlcWtv7C2+/olJLD8=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf</key>
+		<data>
+		OmVu5ptkzLHlfxch92WbUMH7Vu8=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf</key>
+		<data>
+		T1Gk3HWmjT5XMhxEjv3eojyKnbA=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialIcons.ttf</key>
+		<data>
+		fgLD8AVTL/TSQUhWfIQIl1anhIo=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Octicons.ttf</key>
+		<data>
+		FnN1xvp8aT4XZl8X4jczrTKNVAY=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/SimpleLineIcons.ttf</key>
+		<data>
+		n/uBpaEREuKS8swyPphIa61ZdZk=
+		</data>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Zocial.ttf</key>
+		<data>
+		akipYrBsw6y9/WHfDZo0dE7qXo0=
+		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
 		JSPZhSEspg1hX5To9yRS512UM8A=
 		</data>
 		<key>main.jsbundle</key>
 		<data>
-		maowD+juINAEXKEt0aebx28tdpo=
+		0tYMsB7q2xDayVk93tQLz04WRsM=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -298,7 +374,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			WZhIw1UetShmf7x3KxnS2nffWY5bfpcgd7GdTaF9ylY=
+			o8PeUYKebUn0egASM3uXzTd4s8mMQUUWGIjO7jM7Cgg=
 			</data>
 		</dict>
 		<key>Frameworks/ExpoFileSystem.framework/Info.plist</key>
@@ -319,7 +395,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			q82NSFI8cykvbDkMb/avzF0wMJsfNM7R0KoCXAuoRhY=
+			9jYmN3co8/qJ+bTn6LwEx/yhk5zsPET5Rjs6SKOXGbY=
 			</data>
 		</dict>
 		<key>Frameworks/ExpoFont.framework/Info.plist</key>
@@ -340,7 +416,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			rVGBs//nvji0JSx1OO/XbUm830AWKuAK+kKsklqI0MQ=
+			xk6uZzSUtmcuFZYNzgsAnhXq9EeMmxU8b+OTiK+k3yI=
 			</data>
 		</dict>
 		<key>Frameworks/ExpoModulesCore.framework/Info.plist</key>
@@ -361,7 +437,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			whsrjJUV4J01Zakg6w1rjNX4MJjDoBuduNynG6+jgk4=
+			lx4PCSTqMDTkXELXXFpjSTZRFK1nyH7lOBQLWQ8K7OQ=
 			</data>
 		</dict>
 		<key>Frameworks/ExpoModulesJSI.framework/Info.plist</key>
@@ -382,7 +458,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mAy0W0fW2ezOqdFfIjYpNC1H2pUX0SBBMfpWtQ7zTLw=
+			L81QGPgGLvVpH6VFwZpBEHP62rGjss5f9cjfpcXW5AQ=
 			</data>
 		</dict>
 		<key>Frameworks/ExpoModulesWorklets.framework/Info.plist</key>
@@ -410,7 +486,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JWNwZLLZDtjPetrb/MN/TDdJbL6EBhIeHXK+xq4Hd8U=
+			stdWt6vtK2PCcqd2HuCE7Yv0xX9DX5sU6mFbqs7vs7Q=
 			</data>
 		</dict>
 		<key>Frameworks/React.framework/_CodeSignature/CodeResources</key>
@@ -431,7 +507,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			QVTPicu7VL6EIQalvpnRhnWzAirHFriIQfikreN8RD4=
+			M4aXO+BqB4nh5zWMpS/uWrVdWWQ/VNqdNCY5ANL8TaA=
 			</data>
 		</dict>
 		<key>Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies_boost.bundle/Info.plist</key>
@@ -501,7 +577,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SA9XXmwWqhq7epTN41VFTkyV+pByShL8Zucw0Y6JAws=
+			1LsLY4tkDe0DfsWhg1clItHcAL5v6KR6KCAhfgCYi/k=
 			</data>
 		</dict>
 		<key>PrivacyInfo.xcprivacy</key>
@@ -595,6 +671,139 @@
 			nBo0wSHSJHlAjPDqrLNJFUjO0WZVeZuuO19/I4AxS6g=
 			</data>
 		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/AntDesign.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			CKnVtRPPlH4i7egemoQ72Nd2OmNETNIUhL/edmLMZUM=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Entypo.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			FvkimFh7qytGm8E8DfxtXRcbyhC60MkFOtFrwCO/cX0=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/EvilIcons.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			pcrrTTlcXjLx1aMKyzgq68Zk8brf0UkxmQfyIV5OPiY=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Feather.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			AriOrZGt5XENfKGO20Omllpx2TcywG8pDMB6bdJJ6Yc=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			qljzPyOaD7AvXHpsRcBD16msmgkzNYBmlOzW1O3A1qg=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			BvTQCSPqJGl99d8LkphBdZkdi9JXdqAtUxu0AeOT7EI=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xlG4pn0xkyBvYiw8Ow+8pKLycnEIxCErUsHiouhMmzE=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			PQavHzHNg6znomWgFLj7Xe4Vdw7KyPelVVUZDmJ+A8I=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome6_Brands.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			vIRLWwLT862rtRTeTgwCCCUtMSNBO9A/Yof6RGrO6Fk=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome6_Regular.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ZPn7YjaB8RImHpovl4JngkOfOSXeqPRKV9Hk25W6bP0=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome6_Solid.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			MfCZwT9uS6BfG0cb8XDLVJMklHQiKRc3LePKXPKeaho=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Fontisto.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			lNq58dWxPqB2nRJKLaDQJDPzuZ1t6loHwERqdxWBAMA=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Foundation.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			fh3QPdTOkLZYBSVUzXRZ3xZxZxc4mlUvpMbVal+JM+Y=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			+iq30lV4GbK/5QCeRoRO+nFwzxd753NdQ6oqwSlfHVQ=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			YeirpaTpgf4iz3yOi82+oAR251xiw38Bv37jM2HWhCg=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialIcons.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			7xSfCL3S/wmk4shXNHa3sPP7sVtiOVSt5ZiZ5xdb7do=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Octicons.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			m8TZ9emU53S9w++amofadJr19QuGFHPvfRzD1vgikmc=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/SimpleLineIcons.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			P1Ad2wXHCCm7tRz+nKn/9X854GBFfCV7PM8l33Z/CHA=
+			</data>
+		</dict>
+		<key>assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Zocial.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			3Y7kA7vL9eWLd9ykrAPrr6E6KEo9h9jqnKSQQ1qG+kg=
+			</data>
+		</dict>
 		<key>embedded.mobileprovision</key>
 		<dict>
 			<key>hash2</key>
@@ -606,7 +815,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			kwxBsBZrJjA4CODhttSXWANoYM6tKbx5IJJGnOgnLgM=
+			up5WT/Am9elt4jpuwJyBRy2prWA3Gzj/1wUQ7dkXL/c=
 			</data>
 		</dict>
 	</dict>
