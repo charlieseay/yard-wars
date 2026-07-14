@@ -5,7 +5,7 @@
  */
 
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView, Alert, Modal } from 'react-native';
 import { theme } from '../theme';
 import { RoundState, HoleState } from '../../types/game';
 import { GameType, isDiscGolfConfig } from '../../types/gameTypes';
@@ -14,7 +14,7 @@ import { CardModifierPanel } from '../components/CardModifierPanel';
 import { QRSyncModal } from '../components/QRSyncModal';
 import { getDefaultDecks } from '../../state/defaultDecks';
 import { generateUUID } from '../../utils/uuid';
-import { ScorePlusIcon, ScoreMinusIcon } from '../icons';
+import { ScorePlusIcon, ScoreMinusIcon, SettingsIcon } from '../icons';
 
 interface ActiveRoundScreenProps {
   roundState: RoundState;
@@ -41,6 +41,7 @@ export function ActiveRoundScreen({
 }: ActiveRoundScreenProps) {
   const [selectedChipId, setSelectedChipId] = useState<string | null>(null);
   const [showQRSync, setShowQRSync] = useState(false);
+  const [showPauseMenu, setShowPauseMenu] = useState(false);
 
   const currentHole = roundState.holes[roundState.currentHoleIndex];
   const playerIds = Object.keys(roundState.players);
@@ -135,7 +136,7 @@ export function ActiveRoundScreen({
         </>
       )}
 
-      {/* Header - Hole info and skins pot */}
+      {/* Header - Hole info, skins pot, and menu */}
       <View style={styles.header}>
         <View style={styles.holeInfo}>
           <Text style={styles.holeNumber}>HOLE {currentHole.holeNumber}</Text>
@@ -144,12 +145,20 @@ export function ActiveRoundScreen({
         <View style={styles.skinsPot}>
           <Text style={styles.skinsPotLabel}>SKINS POT</Text>
           <Text style={styles.skinsPotValue}>${skinsInPot.toFixed(2)}</Text>
-          <TouchableOpacity
-            style={styles.qrButton}
-            onPress={() => setShowQRSync(true)}
-          >
-            <Text style={styles.qrButtonText}>📱 SYNC</Text>
-          </TouchableOpacity>
+          <View style={styles.headerButtons}>
+            <TouchableOpacity
+              style={styles.headerIconButton}
+              onPress={() => setShowQRSync(true)}
+            >
+              <Text style={styles.headerIconText}>📱</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.headerIconButton}
+              onPress={() => setShowPauseMenu(true)}
+            >
+              <SettingsIcon size={24} color={theme.colors.textPrimary} />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
 
@@ -159,6 +168,82 @@ export function ActiveRoundScreen({
         roundState={roundState}
         onClose={() => setShowQRSync(false)}
       />
+
+      {/* Pause Menu Modal */}
+      <Modal
+        visible={showPauseMenu}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setShowPauseMenu(false)}
+      >
+        <View style={styles.pauseOverlay}>
+          <View style={styles.pauseModal}>
+            <TouchableOpacity
+              style={styles.pauseCloseButton}
+              onPress={() => setShowPauseMenu(false)}
+            >
+              <Text style={styles.pauseCloseText}>✕</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.pauseTitle}>PAUSED</Text>
+
+            <TouchableOpacity
+              style={[styles.pauseButton, styles.pauseButtonPrimary]}
+              onPress={() => setShowPauseMenu(false)}
+            >
+              <Text style={styles.pauseButtonText}>Resume Round</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.pauseButton, styles.pauseButtonSecondary]}
+              onPress={() => {
+                Alert.alert(
+                  'Save & Exit',
+                  'Your progress will be saved. You can continue this round later.',
+                  [
+                    { text: 'Cancel', style: 'cancel' },
+                    {
+                      text: 'Save & Exit',
+                      onPress: () => {
+                        setShowPauseMenu(false);
+                        onEndRound();  // This should save the round
+                      },
+                    },
+                  ]
+                );
+              }}
+            >
+              <Text style={styles.pauseButtonText}>Save & Exit</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.pauseButton, styles.pauseButtonDanger]}
+              onPress={() => {
+                Alert.alert(
+                  'Abandon Round?',
+                  'This will discard your current round. This action cannot be undone.',
+                  [
+                    { text: 'Cancel', style: 'cancel' },
+                    {
+                      text: 'Abandon',
+                      style: 'destructive',
+                      onPress: () => {
+                        setShowPauseMenu(false);
+                        // TODO: Add abandon round handler that deletes without saving
+                        onEndRound();
+                      },
+                    },
+                  ]
+                );
+              }}
+            >
+              <Text style={[styles.pauseButtonText, styles.pauseButtonDangerText]}>
+                Abandon Round
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
 
       {/* Player scores */}
       <ScrollView style={styles.playersContainer}>
@@ -178,8 +263,7 @@ export function ActiveRoundScreen({
                 selectedChipId && styles.playerRowSelectable,
               ]}
               onPress={() => handlePlayerPress(playerId)}
-              disabled={!selectedChipId}
-              activeOpacity={0.7}
+              activeOpacity={selectedChipId ? 0.7 : 1}
             >
               <View style={styles.playerInfo}>
                 <Text style={styles.playerName}>{player.name}</Text>
@@ -402,5 +486,84 @@ const styles = StyleSheet.create({
     color: theme.colors.neonRed,
     textAlign: 'center',
     padding: theme.spacing.lg,
+  },
+  // Header buttons
+  headerButtons: {
+    flexDirection: 'row',
+    gap: theme.spacing.sm,
+    marginTop: theme.spacing.xs,
+  },
+  headerIconButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 8,
+    backgroundColor: theme.colors.neonCyan,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerIconText: {
+    fontSize: 20,
+  },
+  // Pause menu
+  pauseOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.9)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  pauseModal: {
+    width: '85%',
+    backgroundColor: '#111',
+    borderRadius: 16,
+    padding: theme.spacing.xl,
+    borderWidth: 2,
+    borderColor: theme.colors.neonCyan,
+  },
+  pauseCloseButton: {
+    position: 'absolute',
+    top: theme.spacing.md,
+    right: theme.spacing.md,
+    width: 32,
+    height: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  pauseCloseText: {
+    fontSize: 24,
+    color: theme.colors.textSecondary,
+  },
+  pauseTitle: {
+    ...theme.typography.heading1,
+    color: theme.colors.neonCyan,
+    textAlign: 'center',
+    marginBottom: theme.spacing.xl,
+  },
+  pauseButton: {
+    borderRadius: 8,
+    padding: theme.spacing.lg,
+    marginBottom: theme.spacing.md,
+    alignItems: 'center',
+    minHeight: theme.spacing.minTouchTarget,
+  },
+  pauseButtonPrimary: {
+    backgroundColor: theme.colors.neonGreen,
+  },
+  pauseButtonSecondary: {
+    backgroundColor: '#333',
+    borderWidth: 2,
+    borderColor: theme.colors.border,
+  },
+  pauseButtonDanger: {
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: theme.colors.neonRed,
+  },
+  pauseButtonText: {
+    ...theme.typography.button,
+    color: theme.colors.textPrimary,
+    fontWeight: '700',
+  },
+  pauseButtonDangerText: {
+    color: theme.colors.neonRed,
   },
 });
