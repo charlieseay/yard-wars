@@ -65,14 +65,11 @@ export function ActiveRoundScreen({
 
   const handleChipPress = (chipId: string) => {
     if (selectedChipId === chipId) {
+      // Deselect if tapping the same chip
       setSelectedChipId(null);
     } else {
+      // Select chip - visual feedback only, no blocking alert
       setSelectedChipId(chipId);
-      Alert.alert(
-        'Assign Chip',
-        'Tap a player to assign this chip',
-        [{ text: 'Cancel', onPress: () => setSelectedChipId(null) }]
-      );
     }
   };
 
@@ -80,6 +77,8 @@ export function ActiveRoundScreen({
     if (selectedChipId) {
       onAssignChip(selectedChipId, playerId);
       setSelectedChipId(null);
+      // Show success feedback
+      Alert.alert('Chip Assigned', `Chip assigned to ${roundState.players[playerId].name}`, [{ text: 'OK' }]);
     }
   };
 
@@ -132,7 +131,11 @@ export function ActiveRoundScreen({
           />
 
           {/* Chip tray */}
-          <ChipTray chips={availableChips} onChipPress={handleChipPress} />
+          <ChipTray
+            chips={availableChips}
+            onChipPress={handleChipPress}
+            selectedChipId={selectedChipId}
+          />
         </>
       )}
 
@@ -394,6 +397,9 @@ const styles = StyleSheet.create({
   },
   playerRowSelectable: {
     backgroundColor: '#001111',
+    borderColor: theme.colors.neonCyan,
+    borderWidth: 2,
+    borderRadius: 8,
   },
   playerInfo: {
     flex: 1,

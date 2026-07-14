@@ -12,28 +12,34 @@ import { Chip } from '../../types/game';
 interface ChipTrayProps {
   chips: Chip[];
   onChipPress: (chipId: string) => void;
+  selectedChipId?: string | null;
 }
 
-export function ChipTray({ chips, onChipPress }: ChipTrayProps) {
+export function ChipTray({ chips, onChipPress, selectedChipId }: ChipTrayProps) {
   if (chips.length === 0) return null;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>CHIPS</Text>
+      <Text style={styles.title}>CHIPS {selectedChipId && '(Tap player to assign)'}</Text>
       <View style={styles.chipContainer}>
-        {chips.map((chip) => (
-          <TouchableOpacity
-            key={chip.id}
-            style={[
-              styles.chip,
-              chip.type === 'positive' ? styles.chipPositive : styles.chipNegative,
-            ]}
-            onPress={() => onChipPress(chip.id)}
-          >
-            <Text style={styles.chipIcon}>{chip.icon || '•'}</Text>
-            <Text style={styles.chipName}>{chip.name}</Text>
-          </TouchableOpacity>
-        ))}
+        {chips.map((chip) => {
+          const isSelected = selectedChipId === chip.id;
+          return (
+            <TouchableOpacity
+              key={chip.id}
+              style={[
+                styles.chip,
+                chip.type === 'positive' ? styles.chipPositive : styles.chipNegative,
+                isSelected && styles.chipSelected,
+              ]}
+              onPress={() => onChipPress(chip.id)}
+            >
+              {isSelected && <Text style={styles.selectedBadge}>1</Text>}
+              <Text style={styles.chipIcon}>{chip.icon || '•'}</Text>
+              <Text style={styles.chipName}>{chip.name}</Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
     </View>
   );
@@ -78,5 +84,24 @@ const styles = StyleSheet.create({
   chipName: {
     ...theme.typography.caption,
     color: theme.colors.textPrimary,
+  },
+  chipSelected: {
+    borderWidth: 3,
+    borderColor: theme.colors.neonCyan,
+    transform: [{ scale: 1.05 }],
+  },
+  selectedBadge: {
+    position: 'absolute',
+    top: -8,
+    right: -8,
+    backgroundColor: theme.colors.neonCyan,
+    color: theme.colors.background,
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    textAlign: 'center',
+    lineHeight: 20,
+    fontSize: 12,
+    fontWeight: 'bold',
   },
 });
